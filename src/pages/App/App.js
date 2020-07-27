@@ -10,6 +10,7 @@ import HomePage from '../../pages/HomePage/HomePage';
 import DetailPage from '../../pages/DetailPage/DetailPage';
 import ProfilePage from '../../pages/ProfilePage/Profile';
 import NewPostPage from "../NewPostPage/NewPostPage";
+import { makeStyles } from '@material-ui/core/styles';
 class App extends Component {
   constructor() {
     super();
