@@ -4,7 +4,12 @@ import "./App.css";
 import profileService from "../../utils/profileService";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
-
+import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
+import HomePage from '../../pages/HomePage/HomePage';
+import DetailPage from '../../pages/DetailPage/DetailPage';
+import ProfilePage from '../../pages/ProfilePage/Profile';
+import NewPostPage from "../NewPostPage/NewPostPage";
 class App extends Component {
   constructor() {
     super();
@@ -25,7 +30,37 @@ class App extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         <Switch>
+    
+         <Route 
+         exact path="/"
+         render={() => (
+           <HomePage />
+         )}
+         />
+
+         <Route
+         exact path="/post"
+         render={() => (
+             <DetailPage />
+         )}
+         />
+
+        <Route
+          exact path="/post/new"
+          render={() => (
+              <NewPostPage />
+          )}
+        />
+
+        <Route
+         exact path="/profile"
+         render={() => (
+             <ProfilePage />
+         )}
+         />
+
           <Route
             exact
             path="/signup"
@@ -36,6 +71,7 @@ class App extends Component {
               />
             )}
           />
+
           <Route
             exact
             path="/login"
@@ -47,6 +83,7 @@ class App extends Component {
             )}
           />
         </Switch>
+        <Footer />
       </div>
     );
   }
