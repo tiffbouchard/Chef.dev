@@ -59,7 +59,10 @@ class App extends Component {
             )}
           />
 
-          <Route exact path="/profile" render={() => <ProfilePage profile={this.state.profile} />} />
+          <Route exact path="/profile" render={() => 
+          <ProfilePage
+           profile={this.state.profile} 
+           posts={this.state.posts}/>} />
           
           <Route
             exact path="/profile/new"

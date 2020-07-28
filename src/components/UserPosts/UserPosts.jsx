@@ -63,7 +63,7 @@ const classes = useStyles();
             />
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant="h4" component="h2">
-                Heading
+                {props.posts.title}
               </Typography>
               <Typography gutterBottom variant="h6" component="h2">
                 10 tips
