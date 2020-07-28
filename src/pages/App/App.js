@@ -11,6 +11,7 @@ import DetailPage from '../../pages/DetailPage/DetailPage';
 import ProfilePage from '../../pages/ProfilePage/Profile';
 import NewPostPage from "../NewPostPage/NewPostPage";
 import { makeStyles } from '@material-ui/core/styles';
+import NewProfileForm from "../../components/NewProfileForm/NewProfileForm";
 class App extends Component {
   constructor(props) {
 
@@ -65,7 +66,15 @@ class App extends Component {
           <Route
             exact path="/profile"
             render={() => (
-              <ProfilePage />
+              <ProfilePage profile={this.state.profile}
+              handleSignupOrLogin={this.handleSignupOrLogin} />
+            )}
+          />
+
+        <Route
+            exact path="/profile/new"
+            render={() => (
+              <NewProfileForm profile={this.state.profile} />
             )}
           />
 

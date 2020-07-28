@@ -1,37 +1,37 @@
 function setToken(token) {
-  if (token) {
-    localStorage.setItem("token", token);
-  } else {
-    localStorage.removeItem("token");
-  }
+    if (token) {
+        localStorage.setItem("token", token);
+    } else {
+        localStorage.removeItem("token");
+    }
 }
 
 function getToken() {
-  let token = localStorage.getItem("token");
-  if (token) {
-    // Check if expired, remove if it is
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    // JWT's exp is expressed in seconds, not milliseconds, so convert
-    if (payload.exp < Date.now() / 1000) {
-      localStorage.removeItem("token");
-      token = null;
+    let token = localStorage.getItem("token");
+    if (token) {
+        // Check if expired, remove if it is
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        // JWT's exp is expressed in seconds, not milliseconds, so convert
+        if (payload.exp < Date.now() / 1000) {
+            localStorage.removeItem("token");
+            token = null;
+        }
     }
-  }
-  return token;
+    return token;
 }
 
 function getProfileFromToken() {
-  const token = getToken();
-  return token ? JSON.parse(atob(token.split(".")[1])).profile : null;
+    const token = getToken();
+    return token ? JSON.parse(atob(token.split(".")[1])).profile : null;
 }
 
 function removeToken() {
-  localStorage.removeItem("token");
+    localStorage.removeItem("token");
 }
 
 export default {
-  setToken,
-  getToken,
-  removeToken,
-  getProfileFromToken,
+    setToken,
+    getToken,
+    removeToken,
+    getProfileFromToken,
 };
