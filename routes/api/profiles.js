@@ -6,6 +6,8 @@ const profileCtrl = require("../../controllers/profiles");
 /*---------- Public Routes ----------*/
 router.post("/signup", profileCtrl.signup);
 router.post("/login", profileCtrl.login);
+router.post("/newprofile", profileCtrl.newProfile);
+
 
 /*---------- Protected Routes ----------*/
 

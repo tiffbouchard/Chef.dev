@@ -126,6 +126,7 @@ class SignupForm extends Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+
                   variant="outlined"
                   required
                   fullWidth
