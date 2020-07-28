@@ -51,7 +51,9 @@ class App extends Component {
           <Route
             exact path="/post"
             render={() => (
-              <DetailPage />
+              <DetailPage
+                profile={this.state.profile}
+              />
             )}
           />
 
