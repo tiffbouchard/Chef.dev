@@ -1,14 +1,9 @@
-import React from 'react';
-import './UserPosts.css';
-
+import React from "react";
+import "./UserPosts.css";
+import Card from "@material-ui/core/Card";
 
 const UserPosts = (props) => {
-    
-        return(
-            <div>
-               This is the Users posts
-            </div>
-    )
-}
+  return <Card>This is the Users posts</Card>;
+};
 
 export default UserPosts;
