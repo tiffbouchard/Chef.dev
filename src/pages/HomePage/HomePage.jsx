@@ -9,14 +9,10 @@ const HomePage = (props) => {
     return (
         <div>
 
-            <Grid backgroudColor='red' container spacing={12}>
-                <Grid container spacing={8}>
-                    <Feed />
-                </Grid>
-                <Grid container spacing={4}>
-                    <MainSidebar />
-                </Grid>
-            </Grid>
+            <Feed />
+
+            <MainSidebar />
+
         </div>
     )
 }
