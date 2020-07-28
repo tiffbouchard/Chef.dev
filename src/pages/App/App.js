@@ -11,12 +11,8 @@ import HomePage from "../../pages/HomePage/HomePage";
 import DetailPage from "../../pages/DetailPage/DetailPage";
 import ProfilePage from "../../pages/ProfilePage/Profile";
 import NewPostPage from "../NewPostPage/NewPostPage";
-<<<<<<< HEAD
-import { makeStyles } from '@material-ui/core/styles';
-import NewProfileForm from "../../components/NewProfileForm/NewProfileForm";
-=======
 import { makeStyles } from "@material-ui/core/styles";
->>>>>>> 135cb2afd481b7c7bde22e4bd02ed19f87365ea6
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -52,57 +48,57 @@ class App extends Component {
           <Route exact path="/post" render={() => <DetailPage />} />
 
           <Route
-            exact
-            path="/post/new"
-            render={({ history }) => (
-              <NewPostPage
-                history={history}
-                handleCreatePost={this.handleCreatePost}
-                profile={this.state.profile}
-              />
-            )}
-          />
-
-<<<<<<< HEAD
-          <Route
-            exact path="/profile"
+            exact path="/post"
             render={() => (
-              <ProfilePage profile={this.state.profile}
-              handleSignupOrLogin={this.handleSignupOrLogin} />
-            )}
-          />
-
-        <Route
-            exact path="/profile/new"
-            render={() => (
-              <NewProfileForm profile={this.state.profile} />
-            )}
-          />
-=======
-          <Route exact path="/profile" render={() => <ProfilePage />} />
->>>>>>> 135cb2afd481b7c7bde22e4bd02ed19f87365ea6
-
-          <Route
-            exact
-            path="/signup"
-            render={({ history }) => (
-              <SignupPage
-                history={history}
-                handleSignupOrLogin={this.handleSignupOrLogin}
+              <DetailPage
+                exact
+                path="/post/new"
+                render={({ history }) => (
+                  <NewPostPage
+                    history={history}
+                    handleCreatePost={this.handleCreatePost}
+                    profile={this.state.profile}
+                  />
+                )}
               />
-            )}
-          />
 
-          <Route
-            exact
-            path="/login"
-            render={({ history }) => (
-              <LoginPage
-                history={history}
-                handleSignupOrLogin={this.handleSignupOrLogin}
+              <Route
+                exact path="/profile"
+                render={() => (
+                  <ProfilePage profile={this.state.profile}
+                    handleSignupOrLogin={this.handleSignupOrLogin} />
+                )}
               />
-            )}
-          />
+
+              <Route
+                exact path="/profile/new"
+                render={() => (
+                  <NewProfileForm profile={this.state.profile} />
+                )}
+              />
+              <Route exact path="/profile" render={() => <ProfilePage />} />
+
+              <Route
+                exact
+                path="/signup"
+                render={({ history }) => (
+                  <SignupPage
+                    history={history}
+                    handleSignupOrLogin={this.handleSignupOrLogin}
+                  />
+                )}
+              />
+
+              <Route
+                exact
+                path="/login"
+                render={({ history }) => (
+                  <LoginPage
+                    history={history}
+                    handleSignupOrLogin={this.handleSignupOrLogin}
+                  />
+                )}
+              />
         </Switch>
         <Footer />
       </div>

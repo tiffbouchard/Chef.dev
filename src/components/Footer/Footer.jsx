@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
         position: "fixed",
         bottom: 0,
         width: '100%',
+        display: 'flex',
+        alignItems: 'flex-end',
+        height: '10vh'
     },
 
 }));
