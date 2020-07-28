@@ -1,7 +1,14 @@
+<<<<<<< HEAD
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+=======
 const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
 const logger = require("morgan");
+>>>>>>> 2e0d252326bbcc0736314f43d49d294b9862e72f
 // const cors = require('cors')
 
 const app = express();
@@ -12,8 +19,13 @@ require("./config/database");
 app.use(logger("dev"));
 app.use(express.json());
 
+<<<<<<< HEAD
+app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, 'build')));
+=======
 app.use(favicon(path.join(__dirname, "build", "favicon.ico")));
 app.use(express.static(path.join(__dirname, "build")));
+>>>>>>> 2e0d252326bbcc0736314f43d49d294b9862e72f
 
 // Put API routes here, before the "catch all" route
 app.use("/api/profiles", require("./routes/api/profiles"));
