@@ -2,72 +2,63 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import profileService from "../../utils/profileService";
+import postsService from "../../utils/postsService";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import HomePage from '../../pages/HomePage/HomePage';
-import DetailPage from '../../pages/DetailPage/DetailPage';
-import ProfilePage from '../../pages/ProfilePage/Profile';
+import HomePage from "../../pages/HomePage/HomePage";
+import DetailPage from "../../pages/DetailPage/DetailPage";
+import ProfilePage from "../../pages/ProfilePage/Profile";
 import NewPostPage from "../NewPostPage/NewPostPage";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 class App extends Component {
   constructor(props) {
-
     super(props);
     this.state = {
       profile: profileService.getProfile(),
+      posts: postsService.create(),
     };
   }
 
   handleLogout = () => {
-    console.log(this.state.profile)
+    console.log(this.state.profile);
     profileService.logout();
-    console.log(this.state.profile)
+    console.log(this.state.profile);
     this.setState({ profile: null });
-    console.log(this.state.profile)
+    console.log(this.state.profile);
   };
 
   handleSignupOrLogin = () => {
     this.setState({ profile: profileService.getProfile() });
   };
 
+  handleCreatePost = () => {
+    this.setState({ posts: postsService.create() });
+  };
+
   render() {
     return (
       <div>
-        <NavBar
-          handleLogout={this.handleLogout}
-          profile={this.state.profile}
-        />
+        <NavBar handleLogout={this.handleLogout} profile={this.state.profile} />
         <Switch>
+          <Route exact path="/" render={() => <HomePage />} />
+
+          <Route exact path="/post" render={() => <DetailPage />} />
 
           <Route
-            exact path="/"
-            render={() => (
-              <HomePage />
+            exact
+            path="/post/new"
+            render={({ history }) => (
+              <NewPostPage
+                history={history}
+                handleCreatePost={this.handleCreatePost}
+                profile={this.state.profile}
+              />
             )}
           />
 
-          <Route
-            exact path="/post"
-            render={() => (
-              <DetailPage />
-            )}
-          />
-
-          <Route
-            exact path="/post/new"
-            render={() => (
-              <NewPostPage />
-            )}
-          />
-
-          <Route
-            exact path="/profile"
-            render={() => (
-              <ProfilePage />
-            )}
-          />
+          <Route exact path="/profile" render={() => <ProfilePage />} />
 
           <Route
             exact
