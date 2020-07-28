@@ -12,16 +12,20 @@ import ProfilePage from '../../pages/ProfilePage/Profile';
 import NewPostPage from "../NewPostPage/NewPostPage";
 import { makeStyles } from '@material-ui/core/styles';
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+
+    super(props);
     this.state = {
       profile: profileService.getProfile(),
     };
   }
 
   handleLogout = () => {
+    console.log(this.state.profile)
     profileService.logout();
+    console.log(this.state.profile)
     this.setState({ profile: null });
+    console.log(this.state.profile)
   };
 
   handleSignupOrLogin = () => {
@@ -31,36 +35,39 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
-        <Switch>
-    
-         <Route 
-         exact path="/"
-         render={() => (
-           <HomePage />
-         )}
-         />
-
-         <Route
-         exact path="/post"
-         render={() => (
-             <DetailPage />
-         )}
-         />
-
-        <Route
-          exact path="/post/new"
-          render={() => (
-              <NewPostPage />
-          )}
+        <NavBar
+          handleLogout={this.handleLogout}
+          profile={this.state.profile}
         />
+        <Switch>
 
-        <Route
-         exact path="/profile"
-         render={() => (
-             <ProfilePage />
-         )}
-         />
+          <Route
+            exact path="/"
+            render={() => (
+              <HomePage />
+            )}
+          />
+
+          <Route
+            exact path="/post"
+            render={() => (
+              <DetailPage />
+            )}
+          />
+
+          <Route
+            exact path="/post/new"
+            render={() => (
+              <NewPostPage />
+            )}
+          />
+
+          <Route
+            exact path="/profile"
+            render={() => (
+              <ProfilePage />
+            )}
+          />
 
           <Route
             exact
