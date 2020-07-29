@@ -27,12 +27,14 @@ async function getPosts(req, res) {
   // console.log(allPosts);
 }
 
-async function getPost(req, res) {
+function getPost(req, res) {
   const id = req.params.id;
   console.log(id);
-  const Post = await Post.findById(id, function (err, docs) {
-    res.json(Post);
-  });
+  return Post.findById(id, function (err, docs) {
+    if (err) return err;
+    console.log(docs);
+    return res.json(docs);
+  }).populate("profile");
 }
 
 // add cursore() here later when lots of posts so not everything is loaded at once

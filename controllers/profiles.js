@@ -50,6 +50,7 @@ async function newProfile(req, res) {
       }
     );
 
+<<<<<<< HEAD
     await profile.save(function (err) {
       if (err) return handleError(err);
     });
@@ -58,6 +59,15 @@ async function newProfile(req, res) {
   } catch (err) {
     return res.status(400).json(err);
   }
+=======
+
+        const token = createJWT(profile);
+        res.json({ token });
+
+    } catch (err) {
+        return res.status(400).json(err);
+    }
+>>>>>>> 6b2c6dc406e8945e4d3d4d7ef29860ffc0b80b61
 }
 
 // Helper Functions
