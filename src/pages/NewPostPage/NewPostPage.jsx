@@ -113,6 +113,7 @@ class NewPostPage extends Component {
             <Autocomplete
               required
               multiple
+              rows="2"
               id="tags-outlined"
               options={ingredients}
               defaultValue={[ingredients[1]]}

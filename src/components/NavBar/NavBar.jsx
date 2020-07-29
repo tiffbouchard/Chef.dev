@@ -281,6 +281,7 @@ export default function NavBar(props) {
             {mobileMenu}
         </Menu>
     );
+
     return (
         <div className={classes.grow}>
             <AppBar position="static">
@@ -310,6 +311,7 @@ export default function NavBar(props) {
                             )}
                         />
                     </div>
+
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>{login}</div>
                     <div className={classes.sectionMobile}>
