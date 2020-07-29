@@ -65,6 +65,7 @@ const useStyles2 = makeStyles((theme) => ({
 }));
 
 export default function Content() {
+ 
     const classes = useStyles();
 
     const classes2 = useStyles2();
@@ -83,7 +84,7 @@ export default function Content() {
     const handleDelete = (chipToDelete) => () => {
         setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
     };
-
+  
     return (
         <Card className={classes.root}>
             <CardHeader

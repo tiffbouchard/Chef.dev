@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DetailPage = (props) => {
+
+    
     const classes = useStyles();
 
     return (
