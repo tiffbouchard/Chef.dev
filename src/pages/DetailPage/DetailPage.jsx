@@ -56,7 +56,7 @@ const DetailPage = (props) => {
       <CssBaseline />
       <Grid item xs={9} sm={9} md={9} component={Paper}>
         <div className={classes.paper}>
-          <Content />
+          <Content {...props} />
         </div>
       </Grid>
       <Grid item xs={3} sm={3} md={3} className={classes.sidebar}>
