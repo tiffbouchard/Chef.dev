@@ -20,6 +20,7 @@ class App extends Component {
       profile: profileService.getProfile(),
       // posts: postsService.create(),
       allPosts: [],
+      currentPost: []
     };
   }
 
@@ -44,6 +45,11 @@ class App extends Component {
     const data = await response.json();
     this.setState({ allPosts: data });
     console.log(this.state.allPosts);
+
+
+
+    this.setState({ currentPost: postsService.getPost(id) });
+    console.log(this.state.currentPost);
   }
 
   render() {
@@ -69,7 +75,7 @@ class App extends Component {
             )}
           />
 
-          <Route exact path="/post/:id" render={() => <DetailPage />} />
+          <Route exact path="/post/:id" render={() => <DetailPage currentPost={this.state.currentPost} />} />
 
           <Route
             exact
