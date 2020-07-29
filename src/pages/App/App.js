@@ -48,8 +48,8 @@ class App extends Component {
 
 
 
-    this.setState({ currentPost: postsService.getPost(id) });
-    console.log(this.state.currentPost);
+    // this.setState({ currentPost: postsService.getPost(id) });
+    // console.log(this.state.currentPost);
   }
 
   render() {

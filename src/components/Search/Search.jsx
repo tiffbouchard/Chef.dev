@@ -9,28 +9,29 @@ class Search extends Component {
 
   handleInputChange = () => {
     this.setState({
-      query: this.search.value
+      query: this.search.value,
     })
+    console.log(this.state.query)
   }
 
 
-  getSearch = async (e) => {
-    e.preventDefault();
-    try {
-      await searchService.search(this.state);
-      this.props.handleCreatePost();
-      this.props.history.push("/");
-    } catch (err) {
-      this.props.updateMessage(err.message);
-    }
-  };
-  async function getUserAsync(name) {
-  let response = await fetch(`https://api.github.com/users/${name}`);
-  let data = await response.json()
-  return data;
-}
+  //   getSearch = async (e) => {
+  //     e.preventDefault();
+  //     try {
+  //       await searchService.search(this.state);
+  //       this.props.handleCreatePost();
+  //       this.props.history.push("/");
+  //     } catch (err) {
+  //       this.props.updateMessage(err.message);
+  //     }
+  //   };
+  //   async function getUserAsync(name) {
+  //   let response = await fetch(`https://api.github.com/users/${name}`);
+  //   let data = await response.json()
+  //   return data;
+  // }
 
-getUserAsync('yourUsernameHere')
+  getUserAsync('yourUsernameHere')
   .then(data => console.log(data));
 
 render() {
