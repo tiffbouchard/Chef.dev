@@ -16,14 +16,8 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 import Button from "@material-ui/core/Button";
-<<<<<<< HEAD
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import Search from '../Search/Search'
-=======
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
->>>>>>> c9cf6266f2586f1c2ada3923af5891b34c04340b
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -88,14 +82,11 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up("md")]: {
             display: "none",
         },
-<<<<<<< HEAD
-        logo: {
-            maxWidth: 160,
-        },
-=======
-  },
->>>>>>> c9cf6266f2586f1c2ada3923af5891b34c04340b
-    }));
+    },
+    logo: {
+        maxWidth: 120,
+    },
+}));
 
 export default function NavBar(props) {
     const classes = useStyles();
@@ -145,7 +136,6 @@ export default function NavBar(props) {
       </Button>
             </>
         );
-
     let login = props.profile ? (
         <>
             <Typography>{props.profile.username}</Typography>
@@ -187,11 +177,9 @@ export default function NavBar(props) {
       </Button>
             </>
         );
-
     let username = props.profile ? (
         <MenuItem>{props.profile.username}</MenuItem>
     ) : null;
-
     let mobileMenu = props.profile ? (
         <>
             <MenuItem onClick={handleProfileMenuOpen}>
@@ -248,7 +236,6 @@ export default function NavBar(props) {
                 </MenuItem>
             </>
         );
-
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -263,9 +250,7 @@ export default function NavBar(props) {
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
         </Menu>
     );
-
     const mobileMenuId = "primary-search-account-menu-mobile";
-
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -296,22 +281,17 @@ export default function NavBar(props) {
             {mobileMenu}
         </Menu>
     );
-
     return (
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
-                    <Search />
                     <Button component={Link} to="/">
                         <img src="https://64.media.tumblr.com/8e056af594b52dbee776983c74722ed4/c48c313a8e70bcbb-ef/s540x810/a0605413c7b05e0aac22b564409ec6fae3f45048.png" alt="logo" className={classes.logo} />
                     </Button>
                     <Typography className={classes.title} variant="h6" noWrap>
                     </Typography>
-                    <div className={classes.search}>
-
-                    </div>
-
-                    <div style={{ width: 300 }} >
+                    <div className={classes.search}></div>
+                    <div style={{ width: 300 }}>
                         <Autocomplete
                             classes={{
                                 root: classes.inputRoot,
@@ -321,11 +301,15 @@ export default function NavBar(props) {
                             // freeSolo
                             options={top100Films.map((option) => option.title)}
                             renderInput={(params) => (
-                                <TextField {...params} label="Search" margin="normal" variant="outlined" />
+                                <TextField
+                                    {...params}
+                                    label="Search"
+                                    margin="normal"
+                                    variant="outlined"
+                                />
                             )}
                         />
                     </div>
-
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>{login}</div>
                     <div className={classes.sectionMobile}>
@@ -346,9 +330,6 @@ export default function NavBar(props) {
         </div>
     );
 }
-
-
-
 const top100Films = [
     { title: "The Shawshank Redemption", year: 1994 },
     { title: "The Godfather", year: 1972 },

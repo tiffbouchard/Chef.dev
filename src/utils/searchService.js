@@ -1,4 +1,4 @@
-const BASE_URL = "/api/Search/";
+const BASE_URL = "/api/search/";
 
 export default {
   Search,
