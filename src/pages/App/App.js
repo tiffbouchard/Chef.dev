@@ -18,7 +18,8 @@ class App extends Component {
     super(props);
     this.state = {
       profile: profileService.getProfile(),
-      posts: postsService.create(),
+      // posts: postsService.create(),
+      allPosts: [],
     };
   }
 
@@ -38,12 +39,23 @@ class App extends Component {
     this.setState({ posts: postsService.create() });
   };
 
+  async componentDidMount() {
+    const response = await fetch("/api/posts/all");
+    const data = await response.json();
+    this.setState({ allPosts: data });
+    console.log(this.state.allPosts);
+  }
+
   render() {
     return (
       <div>
         <NavBar handleLogout={this.handleLogout} profile={this.state.profile} />
         <Switch>
-          <Route exact path="/" render={() => <HomePage />} />
+          <Route
+            exact
+            path="/"
+            render={() => <HomePage allPosts={this.state.allPosts} />}
+          />
 
           <Route exact path="/post" render={() => <DetailPage />} />
 
@@ -59,13 +71,16 @@ class App extends Component {
             )}
           />
 
-          <Route exact path="/profile" render={() => <ProfilePage profile={this.state.profile} />} />
+          <Route
+            exact
+            path="/profile"
+            render={() => <ProfilePage profile={this.state.profile} />}
+          />
 
           <Route
-            exact path="/profile/new"
-            render={() => (
-              <NewProfileForm profile={this.state.profile} />
-            )}
+            exact
+            path="/profile/new"
+            render={() => <NewProfileForm profile={this.state.profile} />}
           />
 
           <Route

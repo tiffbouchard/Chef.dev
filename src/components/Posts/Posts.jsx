@@ -30,45 +30,51 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//map through all posts and display as card
-
 const Posts = (props) => {
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            React useContext
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions className={classes.cardActions}>
-        <Box className={classes.author}>
-          <Avatar src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
-          <Box ml={2}>
-            <Typography variant="subtitle2" component="p">
-              Guy Clemons
-            </Typography>
-            <Typography variant="subtitle2" color="textSecondary" component="p">
-              May 14, 2020
-            </Typography>
-          </Box>
-        </Box>
-        <Box>
-          <BookmarkBorderIcon />
-        </Box>
-      </CardActions>
-    </Card>
+    <Container>
+      {props.allPosts.map((post, idx) => (
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image={post.image}
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {post.title}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {post.content}
+                {/* get a snippet of the whole content and display here */}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions className={classes.cardActions}>
+            <Box className={classes.author}>
+              <Avatar src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+              <Box ml={2}>
+                <Typography variant="subtitle2" component="p">
+                  Guy Clemons
+                </Typography>
+                <Typography
+                  variant="subtitle2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {new Date(post.createdAt).toDateString()}
+                </Typography>
+              </Box>
+            </Box>
+            <Box>
+              <BookmarkBorderIcon />
+            </Box>
+          </CardActions>
+        </Card>
+      ))}
+    </Container>
   );
 };
 
