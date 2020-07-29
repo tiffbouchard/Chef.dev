@@ -1,8 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 import Feed from "../../components/Feed/Feed";
 import MainSidebar from "../../components/MainSidebar/MainSidebar";
 // import { Grid } from "@material-ui/core";
-
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -26,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "grey",
     },
 }));
-
-const HomePage = (props) => {
-    const classes = useStyles();
-
+class HomePage extends Component {
+    
+    
+    render() {
+        const classes = useStyles();
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -43,6 +43,7 @@ const HomePage = (props) => {
             </Grid>
         </Grid>
     );
+}
 };
 
 export default HomePage;

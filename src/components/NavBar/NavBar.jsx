@@ -247,7 +247,7 @@ export default function NavBar(props) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
         </Menu>
     );
@@ -290,7 +290,7 @@ export default function NavBar(props) {
             <AppBar position="static">
                 <Toolbar>
                     <Typography className={classes.title} variant="h6" noWrap>
-                        Chef.dev
+                        <Button color="inherit" component={Link} to="/" > Chef.dev</Button>
           </Typography>
                     <div className={classes.search}>
 
