@@ -55,12 +55,11 @@ class NewProfileForm extends Component {
     try {
       await profileService.newProfile(this.state);
       this.props.handleSignupOrLogin();
-      // Successfully signed up - show GamePage
+  
       this.props.history.push("/");
       console.log(this.props.history)
     } catch (err) {
-    //   // Invalid user data (probably duplicate email)
-    //   this.props.updateMessage(err.message);
+console.log(err)
     }
   };
 
@@ -99,7 +98,7 @@ class NewProfileForm extends Component {
                   autoFocus
                   type="text"
                   placeholder="Add Bio Here"
-                  value={this.props.profile.bio}
+                  value={this.state.bio}
                   onChange={this.handleChange}
                 />
               </Grid>
