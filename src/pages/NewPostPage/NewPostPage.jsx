@@ -1,22 +1,14 @@
 import React, { Component } from "react";
 import postsService from "../../utils/postsService";
-import Footer from "../../components/Footer/Footer"
+import Footer from "../../components/Footer/Footer";
 
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import MUIRichTextEditor from "mui-rte";
+// import MUIRichTextEditor from "mui-rte";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Chip from "@material-ui/core/Chip";
-import FormControl from "@material-ui/core/FormControl";
 
 const styles = (theme) => ({
   paper: {
@@ -34,6 +26,7 @@ class NewPostPage extends Component {
   state = {
     title: "",
     content: "",
+    goal: "",
     ingredients: [],
     image: "",
     profile: this.props.profile._id,
@@ -92,7 +85,7 @@ class NewPostPage extends Component {
               name="title"
               autoComplete="title"
               autoFocus
-              type="title"
+              type="text"
               placeholder="Title"
               value={this.state.title}
               onChange={this.handleChange}
@@ -130,6 +123,21 @@ class NewPostPage extends Component {
                   name="ingredients"
                 />
               )}
+            />
+            <TextField
+              required
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="header-image"
+              label="Goal"
+              name="goal"
+              autoComplete="Goal"
+              autoFocus
+              type="text"
+              placeholder="What is the purpose of this tutorial?"
+              value={this.state.goal}
+              onChange={this.handleChange}
             />
             <TextField
               variant="outlined"

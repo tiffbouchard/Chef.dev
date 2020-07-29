@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -16,6 +15,7 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 
 const useStyles = makeStyles((theme) => ({
   card: {
+    minWidth: "60vw",
     maxWidth: "100vw",
     margin: "0px 0 30px 0",
   },
@@ -39,17 +39,13 @@ const Posts = (props) => {
       {props.allPosts.map((post) => (
         <Card className={classes.card}>
           <CardActionArea component={Link} to={"/post/" + post._id}>
-            <CardMedia
-              className={classes.media}
-              image={post.image}
-              title="Contemplative Reptile"
-            />
+            <CardMedia className={classes.media} image={post.image} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 {post.title}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                {post.content}
+                {post.goal}
                 {/* get a snippet of the whole content and display here */}
               </Typography>
             </CardContent>

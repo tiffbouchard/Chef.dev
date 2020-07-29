@@ -1,17 +1,15 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import profileService from "../../utils/profileService";
 import postsService from "../../utils/postsService";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/Footer";
 import HomePage from "../../pages/HomePage/HomePage";
 import DetailPage from "../../pages/DetailPage/DetailPage";
 import ProfilePage from "../../pages/ProfilePage/Profile";
 import NewPostPage from "../NewPostPage/NewPostPage";
-import { makeStyles } from "@material-ui/core/styles";
 import NewProfileForm from "../../components/NewProfileForm/NewProfileForm";
 class App extends Component {
   constructor(props) {
@@ -39,6 +37,8 @@ class App extends Component {
   handleCreatePost = () => {
     this.setState({ posts: postsService.create() });
   };
+
+  getCurrentProfilePosts = () => {};
 
   async componentDidMount() {
     const response = await fetch("/api/posts/all");
@@ -90,7 +90,7 @@ class App extends Component {
           <Route
             exact
             path="/profile/new"
-            render={({history}) => <NewProfileForm history={history} profile={this.state.profile} handleSignupOrLogin={this.handleSignupOrLogin}/>}
+            render={() => <NewProfileForm profile={this.state.profile} />}
           />
 
           <Route

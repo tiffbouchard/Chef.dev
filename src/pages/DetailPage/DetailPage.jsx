@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./DetailPage.css";
 import Content from "../../components/Content/Content";
 import DetailSidebar from "../../components/DetailSidebar/DetailSidebar";
@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
+import Hidden from "@material-ui/core/Hidden";
 import Footer from "../../components/Footer/Footer";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     height: "vh",
   },
   paper: {
+    padding: "10px",
     margin: theme.spacing(4, 4),
     display: "flex",
     flexDirection: "column",
@@ -28,21 +30,42 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailPage = (props) => {
   const classes = useStyles();
+
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    const id = props.match.params.id;
+    fetch(`/api/posts/${id}`)
+      .then((res) => res.json())
+      .then((post) => setPost(post))
+      .catch((error) => {
+        console.error("error", error);
+      });
+  }, []);
+  if (post) {
+    console.log(post.profile.username);
+  }
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={9} sm={9} md={9} component={Paper}>
+      <Grid item xs={12} sm={8} md={8} component={Paper}>
         <div className={classes.paper}>
-          <Content {...props} />
+          <Content {...props} post={post} />
         </div>
       </Grid>
-      <Grid item xs={3} sm={3} md={3} className={classes.sidebar}>
-        <DetailSidebar />
-      </Grid>
-      <Grid item xs={9} sm={9} md={9} component={Paper}>
+      <Hidden xsDown>
+        <Grid item xs={3} sm={4} md={4} className={classes.sidebar}>
+          <DetailSidebar post={post} />
+        </Grid>
+      </Hidden>
+      <Grid item xs={12} sm={8} md={8} component={Paper}>
         <div className={classes.paper}>
           <Tips />
         </div>
+      </Grid>
+      <Grid item xs={12} sm={12} md={12}>
+        <Footer />
       </Grid>
     </Grid>
   );
