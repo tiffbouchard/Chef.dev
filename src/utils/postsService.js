@@ -2,6 +2,7 @@ const BASE_URL = "/api/posts/";
 
 export default {
   create,
+  getPosts,
 };
 
 function create(post) {
@@ -12,4 +13,18 @@ function create(post) {
   }).then((res) => {
     if (res.ok) return res.json();
   });
+}
+
+function getPosts() {
+  fetch(BASE_URL + "all")
+    .then(async (response) => {
+      const data = await response.json();
+      if (!response.ok) {
+        const error = (data && data.message) || response.statusText;
+        return Promise.reject(error);
+      }
+    })
+    .catch((error) => {
+      console.error("There was an error!", error);
+    });
 }

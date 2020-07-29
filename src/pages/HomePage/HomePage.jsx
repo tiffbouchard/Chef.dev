@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React from "react";
+import postsService from "../../utils/postsService";
 import Feed from "../../components/Feed/Feed";
 import MainSidebar from "../../components/MainSidebar/MainSidebar";
 // import { Grid } from "@material-ui/core";
@@ -12,38 +13,49 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        height: "100vh",
-    },
-    paper: {
-        margin: theme.spacing(8, 4),
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-    },
-    sidebar: {
-        backgroundColor: "grey",
-    },
+  root: {
+    height: "100vh",
+  },
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  sidebar: {
+    backgroundColor: "grey",
+  },
 }));
-class HomePage extends Component {
-    
-    
-    render() {
-        const classes = useStyles();
-    return (
-        <Grid container component="main" className={classes.root}>
-            <CssBaseline />
-            <Grid item xs={9} sm={9} md={9} component={Paper}>
-                <div className={classes.paper}>
-                    <Feed />
-                </div>
-            </Grid>
-            <Grid item xs={3} sm={3} md={3} className={classes.sidebar}>
-                <MainSidebar />
-            </Grid>
-        </Grid>
-    );
-}
+
+const HomePage = (props) => {
+  const classes = useStyles();
+  return (
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Grid item xs={9} sm={9} md={9} component={Paper}>
+        <div className={classes.paper}>
+          <Feed allPosts={props.allPosts} />
+        </div>
+      </Grid>
+      <Grid item xs={3} sm={3} md={3} className={classes.sidebar}>
+        <MainSidebar />
+      </Grid>
+    </Grid>
+  );
 };
+
+// {
+//   props.colors.map((color, idx) => (
+//     <button
+//       key={color}
+//       className={styles.button}
+//       style={{
+//         backgroundColor: props.selColorIdx === idx ? "white" : color,
+//         borderColor: color,
+//       }}
+//       onClick={() => props.handleColorSelection(idx)}
+//     />
+//   ));
+// }
 
 export default HomePage;
