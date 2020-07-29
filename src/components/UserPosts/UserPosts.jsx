@@ -42,53 +42,52 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5 , 6, 7, 8];
-
+const cards = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const UserPosts = (props) => {
   const profile = props.profile
-const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
-    {/* End hero unit */}
-    <Grid container spacing={4}>
-      {cards.map((card) => (
-        <Grid item key={card} xs={12} sm={6} md={4}>
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.cardMedia}
-              image="https://source.unsplash.com/random"
-              title="Image title"
-            />
-            <CardContent className={classes.cardContent}>
-              <Typography gutterBottom variant="h4" component="h2">
-                Heading
+      {/* End hero unit */}
+      <Grid container spacing={4}>
+        {cards.map((card) => (
+          <Grid item key={card} xs={12} sm={6} md={4}>
+            <Card className={classes.card}>
+              <CardMedia
+                className={classes.cardMedia}
+                image="https://source.unsplash.com/random"
+                title="Image title"
+              />
+              <CardContent className={classes.cardContent}>
+                <Typography gutterBottom variant="h4" component="h2">
+                  Heading
               </Typography>
-              <Typography gutterBottom variant="h6" component="h2">
-                10 tips
+                <Typography gutterBottom variant="h6" component="h2">
+                  10 tips
               </Typography>
-              <Typography>
-                This is a media card. You can use this section to describe the content.
+                <Typography>
+                  This is a media card. You can use this section to describe the content.
               </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small" color="primary">
-                View
+              </CardContent>
+              <CardActions>
+                <Button size="small" color="primary">
+                  View
               </Button>
-              <Button size="small" color="primary">
-                Edit
+                <Button size="small" color="primary">
+                  Edit
               </Button>
-              <Button size="small" color="primary">
-                Delete
+                <Button size="small" color="primary">
+                  Delete
               </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
-  </Container>
-    )
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
+  )
 };
 
 export default UserPosts;

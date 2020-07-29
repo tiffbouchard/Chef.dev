@@ -18,6 +18,7 @@ import ExitToApp from "@material-ui/icons/ExitToApp";
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Search from '../Search/Search'
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -82,6 +83,9 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up("md")]: {
             display: "none",
         },
+    },
+    logo: {
+        maxWidth: 160,
     },
 }));
 
@@ -289,12 +293,16 @@ export default function NavBar(props) {
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
+                    <Search />
+                    <Button component={Link} to="/">
+                        <img src="https://64.media.tumblr.com/8e056af594b52dbee776983c74722ed4/c48c313a8e70bcbb-ef/s540x810/a0605413c7b05e0aac22b564409ec6fae3f45048.png" alt="logo" className={classes.logo} />
+                    </Button>
                     <Typography className={classes.title} variant="h6" noWrap>
-                        Chef.dev
-          </Typography>
+                    </Typography>
                     <div className={classes.search}>
 
                     </div>
+
                     <div style={{ width: 300 }} >
                         <Autocomplete
                             classes={{
@@ -331,6 +339,8 @@ export default function NavBar(props) {
         </div >
     );
 }
+
+
 
 const top100Films = [
     { title: 'The Shawshank Redemption', year: 1994 },
