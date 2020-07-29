@@ -189,24 +189,6 @@ export default function NavBar(props) {
           aria-haspopup="true"
           color="inherit"
         >
-<<<<<<< HEAD
-            <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </Menu>
-    );
-
-    const mobileMenuId = "primary-search-account-menu-mobile";
-
-    const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: "top", horizontal: "right" }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{ vertical: "top", horizontal: "right" }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-=======
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
@@ -222,7 +204,6 @@ export default function NavBar(props) {
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
->>>>>>> c9cf6266f2586f1c2ada3923af5891b34c04340b
         >
           <ExitToApp />
         </IconButton>
@@ -256,16 +237,6 @@ export default function NavBar(props) {
     </>
   );
 
-<<<<<<< HEAD
-    return (
-        <div className={classes.grow}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        <Button color="inherit" component={Link} to="/" > Chef.dev</Button>
-          </Typography>
-                    <div className={classes.search}>
-=======
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -276,11 +247,10 @@ export default function NavBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
->>>>>>> c9cf6266f2586f1c2ada3923af5891b34c04340b
 
   const mobileMenuId = "primary-search-account-menu-mobile";
 
@@ -320,7 +290,12 @@ export default function NavBar(props) {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            Chef.dev
+          <Button
+        color="inherit"
+        component={Link} to="/"
+      >
+        Chef.dev
+      </Button> 
           </Typography>
           <div className={classes.search}></div>
           <div style={{ width: 300 }}>
