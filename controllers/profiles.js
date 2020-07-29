@@ -46,12 +46,9 @@ async function newProfile(req, res) {
             new: true
         });
 
-        await profile.save(function(err) {
-            if (err) return handleError(err);
 
-        });
-        console.log("did u get here")
-        return res.send({ redirect: '/' });
+        const token = createJWT(profile);
+        res.json({ token });
 
     } catch (err) {
         return res.status(400).json(err);

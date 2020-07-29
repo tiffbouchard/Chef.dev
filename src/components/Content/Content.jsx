@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -19,6 +19,8 @@ import ReactPlayer from 'react-player'
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
+import postsService from "../../utils/postsService";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -83,6 +85,32 @@ export default function Content(props) {
     const handleDelete = (chipToDelete) => () => {
         setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
     };
+    const [post, setPost] = useState(null);
+    
+    useEffect(() => {
+  
+
+            const id = props.match.params.id
+            fetch(`/api/posts/${id}`)
+            .then((res) => res.json())
+            .then((post) => 
+            setPost(post)
+        
+            ).catch((error) => {
+                console.error("error", error);
+            })
+    
+        
+    },[]);
+   if(post) {  console.log(post.profile.username) } 
+
+
+// const id = props.match.params.id
+// const test = []
+// test[0] = await postsService.getPost(id)
+//     // this.setState({ currentPost: postsService.getPost(id) });
+//     console.log(test);
+ 
 
     return (
         <Card className={classes.root}>
@@ -129,14 +157,9 @@ export default function Content(props) {
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
             <h3>{props.match.params.id}</h3>
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
+       <h3>{post && post.title}</h3>
+          
+                  {post && post.content}
         </Typography>
             </CardContent>
             <CardActions disableSpacing>
