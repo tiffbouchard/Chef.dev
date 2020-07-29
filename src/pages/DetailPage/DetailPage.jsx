@@ -7,6 +7,8 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
+import Footer from "../../components/Footer/Footer"
+
 
 
 
@@ -45,6 +47,9 @@ const DetailPage = (props) => {
                 <div className={classes.paper}>
                     <Tips />
                 </div>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} component={Paper}>
+                <Footer />
             </Grid>
         </Grid>
     );
