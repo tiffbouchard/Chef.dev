@@ -99,7 +99,7 @@ class NewProfileForm extends Component {
                   autoFocus
                   type="text"
                   placeholder="Add Bio Here"
-                  value={this.state.bio}
+                  value={this.props.profile.bio}
                   onChange={this.handleChange}
                 />
               </Grid>

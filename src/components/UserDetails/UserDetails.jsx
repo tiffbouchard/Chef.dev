@@ -11,6 +11,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Container from '@material-ui/core/Container';
 import { Link } from "react-router-dom";
 import { IconButton } from '@material-ui/core';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -84,9 +86,12 @@ const useStyles = makeStyles((theme) => ({
             <Grid container spacing={2} justify="center">
 
             <Grid xs={12} sm={6} md={4}>
+                <GitHubIcon />
                 {githubIcon}
               </Grid>
               <Grid xs={12} sm={6} md={4}>
+                <LinkedInIcon />
+                
               {linkedinIcon}
                </Grid>
             </Grid>
