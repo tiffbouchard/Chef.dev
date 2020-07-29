@@ -20,7 +20,7 @@ class App extends Component {
       profile: profileService.getProfile(),
       // posts: postsService.create(),
       allPosts: [],
-      currentPost: []
+      currentPost: [],
     };
   }
 
@@ -46,10 +46,8 @@ class App extends Component {
     this.setState({ allPosts: data });
     console.log(this.state.allPosts);
 
-
-
-    // this.setState({ currentPost: postsService.getPost(id) });
-    // console.log(this.state.currentPost);
+    //   this.setState({ currentPost: postsService.getPost(id) });
+    //   console.log(this.state.currentPost);
   }
 
   render() {
@@ -75,7 +73,15 @@ class App extends Component {
             )}
           />
 
+<<<<<<< Updated upstream
           <Route exact path="/post/:id" render={(props) => <DetailPage {...props} currentPost={this.state.currentPost} />} />
+=======
+          <Route
+            exact
+            path="/post/:id"
+            render={() => <DetailPage currentPost={this.state.currentPost} />}
+          />
+>>>>>>> Stashed changes
 
           <Route
             exact
