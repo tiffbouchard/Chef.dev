@@ -1,10 +1,12 @@
 const Post = require("../models/post");
+const Profile = require("../models/profile");
 
 module.exports = {
   create,
   getPosts,
 };
 
+// when create post query the Profile
 async function create(req, res) {
   const post = new Post(req.body);
   console.log(req.body);
@@ -18,7 +20,7 @@ async function create(req, res) {
 }
 
 async function getPosts(req, res) {
-  const allPosts = await Post.find();
+  const allPosts = await Post.find().populate("profile");
   res.json(allPosts);
   // add cursore() here later when lots of posts so not everything is loaded at once
   // console.log(allPosts);
