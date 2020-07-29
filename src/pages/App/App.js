@@ -75,7 +75,7 @@ class App extends Component {
             )}
           />
 
-          <Route exact path="/post/:id" render={() => <DetailPage currentPost={this.state.currentPost} />} />
+          <Route exact path="/post/:id" render={(props) => <DetailPage {...props} currentPost={this.state.currentPost} />} />
 
           <Route
             exact

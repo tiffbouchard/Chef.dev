@@ -64,8 +64,7 @@ const useStyles2 = makeStyles((theme) => ({
     },
 }));
 
-export default function Content() {
- 
+export default function Content(props) {
     const classes = useStyles();
 
     const classes2 = useStyles2();
@@ -84,7 +83,7 @@ export default function Content() {
     const handleDelete = (chipToDelete) => () => {
         setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
     };
-  
+
     return (
         <Card className={classes.root}>
             <CardHeader
@@ -129,6 +128,7 @@ export default function Content() {
             </Paper>
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
+            <h3>{props.match.params.id}</h3>
                     This impressive paella is a perfect party dish and a fun meal to cook together with your
                     guests. Add 1 cup of frozen peas along with the mussels, if you like.
                     This impressive paella is a perfect party dish and a fun meal to cook together with your
