@@ -73,15 +73,13 @@ class App extends Component {
             )}
           />
 
-<<<<<<< Updated upstream
-          <Route exact path="/post/:id" render={(props) => <DetailPage {...props} currentPost={this.state.currentPost} />} />
-=======
           <Route
             exact
             path="/post/:id"
-            render={() => <DetailPage currentPost={this.state.currentPost} />}
+            render={(props) => (
+              <DetailPage {...props} currentPost={this.state.currentPost} />
+            )}
           />
->>>>>>> Stashed changes
 
           <Route
             exact
