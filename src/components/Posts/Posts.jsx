@@ -56,10 +56,10 @@ const Posts = (props) => {
           </CardActionArea>
           <CardActions className={classes.cardActions}>
             <Box className={classes.author}>
-              <Avatar src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+              <Avatar src="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png" />
               <Box ml={2}>
                 <Typography variant="subtitle2" component="p">
-                  Guy Clemons
+                  {post.profile.username}
                 </Typography>
                 <Typography
                   variant="subtitle2"
