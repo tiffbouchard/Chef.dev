@@ -44,8 +44,12 @@ class NewPostPage extends Component {
       await postsService.create(this.state);
       this.props.handleCreatePost();
       this.props.history.push("/");
+      // Does REPLACE method refresh teh page so we can see the new blog post?
+      //Dont need this after the redirect is to the blogs details page
+      //Can just push to the details page (or redirect)
     } catch (err) {
-      this.props.updateMessage(err.message);
+      alert("Error");
+      //   this.props.updateMessage(err.message);
     }
   };
 
