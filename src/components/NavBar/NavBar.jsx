@@ -9,7 +9,6 @@ import InputBase from "@material-ui/core/InputBase";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
@@ -18,6 +17,7 @@ import ExitToApp from "@material-ui/icons/ExitToApp";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Search from "../Search/Search"
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -127,15 +127,15 @@ export default function NavBar(props) {
       </Button>
     </>
   ) : (
-    <>
-      <Button color="inherit" component={Link} to="/login">
-        Login
+      <>
+        <Button color="inherit" component={Link} to="/login">
+          Login
       </Button>
-      <Button color="inherit" component={Link} to="/signup">
-        Sign up
+        <Button color="inherit" component={Link} to="/signup">
+          Sign up
       </Button>
-    </>
-  );
+      </>
+    );
   let login = props.profile ? (
     <>
       <Typography>{props.profile.username}</Typography>
@@ -168,15 +168,15 @@ export default function NavBar(props) {
       </IconButton>
     </>
   ) : (
-    <>
-      <Button color="inherit" component={Link} to="/login">
-        Login
+      <>
+        <Button color="inherit" component={Link} to="/login">
+          Login
       </Button>
-      <Button color="inherit" component={Link} to="/signup">
-        Sign up
+        <Button color="inherit" component={Link} to="/signup">
+          Sign up
       </Button>
-    </>
-  );
+      </>
+    );
   let username = props.profile ? (
     <MenuItem>{props.profile.username}</MenuItem>
   ) : null;
@@ -211,31 +211,31 @@ export default function NavBar(props) {
       </MenuItem>
     </>
   ) : (
-    <>
-      <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <ExitToApp />
-        </IconButton>
-        <p>Login</p>
-      </MenuItem>
-      <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <ExitToApp />
-        </IconButton>
-        <p>Sign Up</p>
-      </MenuItem>
-    </>
-  );
+      <>
+        <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <ExitToApp />
+          </IconButton>
+          <p>Login</p>
+        </MenuItem>
+        <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <ExitToApp />
+          </IconButton>
+          <p>Sign Up</p>
+        </MenuItem>
+      </>
+    );
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -297,27 +297,10 @@ export default function NavBar(props) {
             className={classes.title}
             variant="h6"
             noWrap
-          ></Typography>
-          <div className={classes.search}></div>
-          <div style={{ width: 300 }}>
-            <Autocomplete
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              // id="free-solo-demo"
-              // freeSolo
-              options={top100Films.map((option) => option.title)}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Search"
-                  margin="normal"
-                  variant="outlined"
-                />
-              )}
-            />
-          </div>
+          >
+          </Typography>
+          <Search />
+
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>{login}</div>
