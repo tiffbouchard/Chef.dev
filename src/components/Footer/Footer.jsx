@@ -6,11 +6,11 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    position: "fixed",
-    bottom: 0,
+    position: "static",
     width: "100%",
     display: "flex",
     alignItems: "flex-end",

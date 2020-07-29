@@ -1,15 +1,19 @@
 const BASE_URL = "/api/search/";
 
 export default {
-  Search,
+  search,
 };
 
-function Search(post) {
-  return fetch(BASE_URL + "search", {
-    method: "GET",
-    headers: new Headers({ "Content-Type": "application/json" }),
-    body: JSON.stringify(post),
-  }).then((res) => {
-    if (res.ok) return res.json();
-  });
+function search() {
+  fetch(BASE_URL + "search")
+    .then(async (response) => {
+      const search = await response.json();
+      if (!response.ok) {
+        const error = (search && search.message) || response.statusText;
+        return Promise.reject(error);
+      }
+    })
+    .catch((error) => {
+      console.error("There was an error!", error);
+    });
 }

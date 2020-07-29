@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import postsService from "../../utils/postsService";
+import Footer from "../../components/Footer/Footer"
 
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -158,6 +159,7 @@ class NewPostPage extends Component {
             </Button>
           </form>
         </div>
+        <Footer />
       </Container>
     );
   }

@@ -12,6 +12,8 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Hidden from "@material-ui/core/Hidden";
+import Footer from "../../components/Footer/Footer"
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,6 +45,9 @@ const HomePage = (props) => {
           <MainSidebar />
         </Grid>
       </Hidden>
+      <Grid item xs={123} sm={12} md={12} className={classes.sidebar}>
+        <Footer />
+      </Grid>
     </Grid>
   );
 };
