@@ -32,3 +32,5 @@ async function getPosts(req, res) {
 //     .limit(req.query.limit || 20);
 //   res.json(scores);
 // }
+
+// Sort by currentDate

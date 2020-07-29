@@ -11,13 +11,14 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
   },
   paper: {
-    margin: theme.spacing(8, 4),
+    margin: theme.spacing(4, 3),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -32,14 +33,16 @@ const HomePage = (props) => {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={9} sm={9} md={9} component={Paper}>
+      <Grid item xs={12} sm={8} md={8} component={Paper}>
         <div className={classes.paper}>
           <Feed allPosts={props.allPosts} />
         </div>
       </Grid>
-      <Grid item xs={3} sm={3} md={3} className={classes.sidebar}>
-        <MainSidebar />
-      </Grid>
+      <Hidden xsDown>
+        <Grid item xs={3} sm={4} md={4} className={classes.sidebar}>
+          <MainSidebar />
+        </Grid>
+      </Hidden>
     </Grid>
   );
 };

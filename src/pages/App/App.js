@@ -57,8 +57,6 @@ class App extends Component {
             render={() => <HomePage allPosts={this.state.allPosts} />}
           />
 
-          <Route exact path="/post" render={() => <DetailPage />} />
-
           <Route
             exact
             path="/post/new"
@@ -71,11 +69,14 @@ class App extends Component {
             )}
           />
 
-          <Route exact path="/profile" render={() => 
-          <ProfilePage
-           profile={this.state.profile} 
-           posts={this.state.posts}/>} />
-          
+          <Route exact path="/post/:id" render={() => <DetailPage />} />
+
+          <Route
+            exact
+            path="/profile"
+            render={() => <ProfilePage profile={this.state.profile} />}
+          />
+
           <Route
             exact
             path="/profile/new"

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Posts.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -15,7 +16,8 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    maxWidth: "100%",
+    maxWidth: "100vw",
+    margin: "0px 0 30px 0",
   },
   media: {
     height: 100,
@@ -34,9 +36,9 @@ const Posts = (props) => {
   const classes = useStyles();
   return (
     <Container>
-      {props.allPosts.map((post, idx) => (
+      {props.allPosts.map((post) => (
         <Card className={classes.card}>
-          <CardActionArea>
+          <CardActionArea component={Link} to={"/post/" + post._id}>
             <CardMedia
               className={classes.media}
               image={post.image}
