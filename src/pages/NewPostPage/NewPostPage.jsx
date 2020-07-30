@@ -26,6 +26,7 @@ class NewPostPage extends Component {
   state = {
     title: "",
     content: "",
+    goal: "",
     ingredients: [],
     image: "",
     video: "",
@@ -137,6 +138,21 @@ class NewPostPage extends Component {
                   name="ingredients"
                 />
               )}
+            />
+            <TextField
+              required
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="header-image"
+              label="Goal"
+              name="goal"
+              autoComplete="Goal"
+              autoFocus
+              type="text"
+              placeholder="What is the purpose of this tutorial?"
+              value={this.state.goal}
+              onChange={this.handleChange}
             />
             <TextField
               variant="outlined"

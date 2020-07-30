@@ -2,37 +2,45 @@ import React, { Component } from "react";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import tipService from "../../utils/tipsService"
+import tipsService from "../../utils/tipsService"
 
 class TipsForm extends Component {
   state = {
     content: "",
     link: "",
+    profile: this.props.profile._id,
+    post: this.props.match.params.id,
+    allTips: []
   };
 
+
   handleChange = (e) => {
-    this.props.updateMessage("");
     this.setState({
-      // Using ES2015 Computed Property Names
       [e.target.name]: e.target.value,
     });
   };
 
+
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await tipService.create(this.state);
-      // Let <App> know a user has signed up!
-      this.props.handleSignupOrLogin();
-      // Successfully signed up - show GamePage
+      await tipsService.create(this.state);
       this.props.history.push("/");
     } catch (err) {
-      // Invalid user data (probably duplicate email)
-      this.props.updateMessage(err.message);
+      alert("Error")
+      console.log(err)
     }
   };
 
+  async componentDidMount() {
+    const response = await fetch("/api/tips/all");
+    const data = await response.json();
+    this.setState({ allTips: data });
+  }
+
   render() {
+    console.log(this.props.profile)
+    console.log(this.state.allTips)
     return (
       <form onSubmit={this.handleSubmit}>
         <TextField
@@ -59,7 +67,7 @@ class TipsForm extends Component {
           fullWidth
           id="Tip"
           label="Tip"
-          name="tip"
+          name="content"
           autoComplete="Tip"
           autoFocus
           type="text"

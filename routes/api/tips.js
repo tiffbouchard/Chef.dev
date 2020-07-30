@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const tipCtrl = require("../../controllers/tips");
+const tipsCtrl = require("../../controllers/tips");
 
 /*---------- Public Routes ----------*/
-router.post("/new", postCtrl.create);
-router.get("/id", postCtrl.getPosts);
+router.post("/new", tipsCtrl.create);
+router.get("/all", tipsCtrl.getTips);
 
 /*---------- Protected Routes ----------*/
 
