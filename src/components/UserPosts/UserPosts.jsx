@@ -10,6 +10,8 @@ import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
+import swal from 'sweetalert';
+
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -60,7 +62,23 @@ const UserPosts = (props) => {
   }, []);
 
   async function onDeleteClick(index) {
-    await handleDeletePost(userpost[index]._id);
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this post!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then(async (willDelete) => {
+      if (willDelete) {
+        await handleDeletePost(userpost[index]._id);
+        swal("Poof! Your post has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your post has not been deleted!");
+      }
+    });
   }
 
   async function handleDeletePost(id) {
@@ -75,25 +93,31 @@ const UserPosts = (props) => {
         setUserPost(updateUserPosts);
       });
   }
-
+  
+  
+  
+  console.log(profile)
   return (
+
+   
     <Container className={classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
+        {userpost.length > 0 ? 
       <Grid container spacing={4}>
         {userpost.map((post, index) => (
           <Grid item key={post} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
               <CardMedia
                 className={classes.cardMedia}
-                image="https://source.unsplash.com/random"
-                title="Image title"
+                image={post.image}
+                title={post.title}
               />
               <CardContent className={classes.cardContent}>
                 <Typography gutterBottom variant="h4" component="h2">
                   {post.title}
                 </Typography>
-                <Typography gutterBottom variant="h6" component="h2">
-                  10 tips
+                <Typography gutterBottom variant="h8" component="h8">
+                {new Date(post.createdAt).toDateString()}
                 </Typography>
                 <Typography>
                   {post.content.split(" ").slice(0, 40).join(" ")}
@@ -120,8 +144,9 @@ const UserPosts = (props) => {
               </CardActions>
             </Card>
           </Grid>
-        ))}
+      ))}
       </Grid>
+    : <Grid>  <h3>You have no recipes submitted, Chef {profile.firstName}</h3></Grid> } 
     </Container>
   );
 };

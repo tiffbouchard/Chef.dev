@@ -28,6 +28,7 @@ class NewPostPage extends Component {
   state = {
     title: "",
     content: "",
+    goal: "",
     ingredients: [],
     image: "",
     video: "",

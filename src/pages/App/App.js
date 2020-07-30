@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import profileService from "../../utils/profileService";
 import postsService from "../../utils/postsService";
@@ -18,7 +18,6 @@ class App extends Component {
     super(props);
     this.state = {
       profile: profileService.getProfile(),
-      // posts: postsService.create(),
       allPosts: [],
       currentPost: [],
     };
@@ -37,7 +36,7 @@ class App extends Component {
     this.setState({ posts: postsService.create() });
   };
 
-  getCurrentProfilePosts = () => {};
+  getCurrentProfilePosts = () => { };
 
   async componentDidMount() {
     const response = await fetch("/api/posts/all");
@@ -77,24 +76,26 @@ class App extends Component {
             exact
             path="/post/:id"
             render={(props) => (
-              <DetailPage {...props} currentPost={this.state.currentPost} />
+              <DetailPage {...props} profile={this.state.profile} currentPost={this.state.currentPost} />
             )}
           />
           <Route
             exact
             path="/profile"
-            render={() => <ProfilePage profile={this.state.profile} />}
+            render={() => profileService.getProfile() ? 
+               <ProfilePage profile={this.state.profile} /> : <Redirect to='/login'/>
+              }
           />
           <Route
             exact
             path="/profile/new"
-            render={({ history }) => (
+            render={({ history }) => profileService.getProfile() ? (
               <NewProfileForm
                 history={history}
                 profile={this.state.profile}
                 handleSignupOrLogin={this.handleSignupOrLogin}
               />
-            )}
+            ) : <Redirect to='/login'/>}
           />
           <Route
             exact

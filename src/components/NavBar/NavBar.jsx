@@ -169,15 +169,8 @@ export default function NavBar(props) {
   let nav = props.profile ? (
     <>
       <button component={Link} to="/profile">
-        <Typography>{props.profile.username}</Typography>
+        <Typography>Hello, {props.profile.username}</Typography>
       </button>
-      <Button
-        color="inherit"
-        className="NavBar-link"
-        onClick={props.handleLogout}
-      >
-        LOG OUT
-      </Button>
     </>
   ) : (
       <>
@@ -191,24 +184,9 @@ export default function NavBar(props) {
     );
   let login = props.profile ? (
     <>
-      <Typography>{props.profile.username}</Typography>
-      <Button
-        color="inherit"
-        className="NavBar-link"
-        onClick={props.handleLogout}
-      >
-        LOG OUT
-      </Button>
-      <IconButton aria-label="show 4 new mails" color="inherit">
-        <Badge badgeContent={4} color="secondary">
-          <MailIcon />
-        </Badge>
-      </IconButton>
-      <IconButton aria-label="show 17 new notifications" color="inherit">
-        <Badge badgeContent={17} color="secondary">
-          <NotificationsIcon />
-        </Badge>
-      </IconButton>
+      <Typography>Hello, {props.profile.username}</Typography>
+    
+      
       <IconButton
         edge="end"
         aria-label="account of current user"
@@ -235,7 +213,7 @@ export default function NavBar(props) {
   ) : null;
   let mobileMenu = props.profile ? (
     <>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem component={Link} to='/profile'>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
@@ -299,9 +277,12 @@ export default function NavBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        My account</MenuItem>
+      <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem  onClick={() => {
+          props.handleLogout();
+          handleMenuClose();
+        }}>
+        Logout</MenuItem>
     </Menu>
   );
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -316,22 +297,7 @@ export default function NavBar(props) {
       onClose={handleMobileMenuClose}
     >
       {username}
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
+      
       {mobileMenu}
     </Menu>
   );

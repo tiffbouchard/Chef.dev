@@ -37,6 +37,7 @@ function getPost(req, res) {
     }).populate("profile");
 }
 
+
 async function deletePost(req, res) {
     const id = req.params.id;
     console.log("User Profile, fetching post id from server to delete", id);

@@ -98,8 +98,6 @@ class Search extends Component {
           renderOption={option =>
             <span>
               {option.title}
-
-              {option.id}
             </span>
           }
           renderInput={(params) => (
