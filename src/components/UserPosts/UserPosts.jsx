@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./UserPosts.css";
 import Card from "@material-ui/core/Card";
-<<<<<<< HEAD
 import { makeStyles } from "@material-ui/core/styles";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,17 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
-=======
-import { makeStyles } from '@material-ui/core/styles';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import CardMedia from '@material-ui/core/CardMedia';
-import Container from '@material-ui/core/Container';
 import { Link } from "react-router-dom";
->>>>>>> 3f3e7fd621dfcad973e098d2488bb02e7417b98f
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -67,41 +56,31 @@ const UserPosts = (props) => {
       .then((userpost) => setUserPost(userpost), console.log(userpost))
       .catch((error) => {
         console.error("error", error);
-<<<<<<< HEAD
       });
-=======
-
-      }
-      )
->>>>>>> 3f3e7fd621dfcad973e098d2488bb02e7417b98f
   }, []);
 
-  async function onDeleteClick (index) {
-      await handleDeletePost(userpost[index]._id)    
+  async function onDeleteClick(index) {
+    await handleDeletePost(userpost[index]._id);
   }
 
-   async function handleDeletePost(id) {
-   await fetch(`/api/posts/delete/${id}`, {
-    method: "DELETE", })
-   .then((res) => res.json())
-   .then(data => {
-      let updateUserPosts = userpost.filter(post => {
-        return id !== post._id
-      })
-      setUserPost(updateUserPosts);
-    });
+  async function handleDeletePost(id) {
+    await fetch(`/api/posts/delete/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        let updateUserPosts = userpost.filter((post) => {
+          return id !== post._id;
+        });
+        setUserPost(updateUserPosts);
+      });
   }
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
       <Grid container spacing={4}>
-<<<<<<< HEAD
-        {userpost.map((post) => (
-=======
-
-        {userpost.map((post,index) => (
->>>>>>> 3f3e7fd621dfcad973e098d2488bb02e7417b98f
+        {userpost.map((post, index) => (
           <Grid item key={post} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
               <CardMedia
@@ -121,25 +100,21 @@ const UserPosts = (props) => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button 
-                component={Link}
-                to={`/post/${post._id}`}
-                size="small" 
-                color="primary">
+                <Button
+                  component={Link}
+                  to={`/post/${post._id}`}
+                  size="small"
+                  color="primary"
+                >
                   View
-<<<<<<< HEAD
                 </Button>
-                <Button size="small" color="primary">
-                  Edit
-                </Button>
-                <Button size="small" color="primary">
-=======
-              </Button>
-                <Button 
-                onClick={() => { onDeleteClick(index)} }
-                size="small" 
-                color="primary">
->>>>>>> 3f3e7fd621dfcad973e098d2488bb02e7417b98f
+                <Button
+                  onClick={() => {
+                    onDeleteClick(index);
+                  }}
+                  size="small"
+                  color="primary"
+                >
                   Delete
                 </Button>
               </CardActions>
