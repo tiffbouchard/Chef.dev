@@ -58,15 +58,15 @@ const UserDetails = (props) => {
     </Button>
   );
   const linkedinIcon = profile.linkedin ? (
-    <Link href={profile.linkedin} variant="body2">
-      LINKEDIN ICON
-    </Link>
+    <a target="_blank" href={profile.linkedin}>
+    <LinkedInIcon />
+  </a>
   ) : null;
 
   const githubIcon = profile.github ? (
-    <Link href={profile.github} variant="body2">
-      GITHUB ICON
-    </Link>
+    <a target="_blank" href={profile.github}>
+    <GitHubIcon />
+  </a>
   ) : null;
 
   return (
@@ -102,15 +102,8 @@ const UserDetails = (props) => {
             </Typography>
 
             <Grid container spacing={2} justify="center">
-              <Grid xs={12} sm={6} md={4}>
-                <GitHubIcon />
-                {githubIcon}
-              </Grid>
-              <Grid xs={12} sm={6} md={4}>
-                <LinkedInIcon />
-
-                {linkedinIcon}
-              </Grid>
+         {githubIcon}
+         {linkedinIcon}
             </Grid>
 
             <div className={classes.heroButtons}>

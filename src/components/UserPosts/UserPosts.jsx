@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
+import swal from 'sweetalert';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -60,7 +61,23 @@ const UserPosts = (props) => {
   }, []);
 
   async function onDeleteClick(index) {
-    await handleDeletePost(userpost[index]._id);
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this post!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then(async (willDelete) => {
+      if (willDelete) {
+        await handleDeletePost(userpost[index]._id);
+        swal("Poof! Your post has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your post has not been deleted!");
+      }
+    });
   }
 
   async function handleDeletePost(id) {
