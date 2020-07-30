@@ -59,23 +59,18 @@ const UserDetails = (props) => {
   //     Create Profile
   //   </Button>
   // );
-  // const linkedinIcon = profile.linkedin ? (
-  //   <Link
-  //     href={props.userpost && props.userpost[0].profile.linked}
-  //     variant="body2"
-  //   >
-  //     LINKEDIN ICON
-  //   </Link>
-  // ) : null;
 
-  // const githubIcon = profile.github ? (
-  //   <Link
-  //     href={props.userpost && props.userpost[0].profile.github}
-  //     variant="body2"
-  //   >
-  //     GITHUB ICON
-  //   </Link>
-  // ) : null;
+  const linkedinIcon = props.userpost && props.userpost[0].profile.linkedin ? (
+    <a target="_blank" href={props.userpost[0].profile.linkedin}>
+    <LinkedInIcon />
+  </a>
+  ) : null;
+
+  const githubIcon = props.userpost && props.userpost[0].profile.github ? (
+    <a target="_blank" href={props.userpost[0].profile.github}>
+    <GitHubIcon />
+  </a>
+  ) : null;
 
   return (
     <>
@@ -91,13 +86,13 @@ const UserDetails = (props) => {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
-            {props.match.params.id === props.currentUser._id ? (
+            {/* {props.match.params.id && props.currentUser._id ? (
               <Grid className={classes.button} container justify="center">
                 <Button disabled variant="outlined">
                   YOUR PUBLIC PROFILE
                 </Button>
               </Grid>
-            ) : null}
+            ) : null} */}
             <Typography
               component="h1"
               variant="h2"
@@ -127,18 +122,12 @@ const UserDetails = (props) => {
               {props.userpost && props.userpost[0].profile.bio}
             </Typography>
 
+           
             <Grid container spacing={2} justify="center">
-              <Grid xs={12} sm={6} md={4}>
-                <GitHubIcon />
-                {/* {githubIcon} */}
-              </Grid>
-              <Grid xs={12} sm={6} md={4}>
-                <LinkedInIcon />
-
-                {/* {linkedinIcon} */}
-              </Grid>
+         {githubIcon}
+         {linkedinIcon}
+  
             </Grid>
-
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 {/* <Grid item>{editprofile}</Grid> */}

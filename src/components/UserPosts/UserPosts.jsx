@@ -12,6 +12,7 @@ import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import swal from 'sweetalert';
 
+
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -92,10 +93,16 @@ const UserPosts = (props) => {
         setUserPost(updateUserPosts);
       });
   }
-
+  
+  
+  
+  console.log(profile)
   return (
+
+   
     <Container className={classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
+        {userpost.length > 0 ? 
       <Grid container spacing={4}>
         {userpost.map((post, index) => (
           <Grid item key={post} xs={12} sm={6} md={4}>
@@ -109,7 +116,7 @@ const UserPosts = (props) => {
                 <Typography gutterBottom variant="h4" component="h2">
                   {post.title}
                 </Typography>
-                <Typography gutterBottom variant="h6" component="h2">
+                <Typography gutterBottom variant="h8" component="h8">
                 {new Date(post.createdAt).toDateString()}
                 </Typography>
                 <Typography>
@@ -137,8 +144,9 @@ const UserPosts = (props) => {
               </CardActions>
             </Card>
           </Grid>
-        ))}
+      ))}
       </Grid>
+    : <Grid>  <h3>You have no recipes submitted, Chef {profile.firstName}</h3></Grid> } 
     </Container>
   );
 };

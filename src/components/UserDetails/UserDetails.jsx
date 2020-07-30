@@ -90,15 +90,19 @@ const UserDetails = (props) => {
               color="textPrimary"
               gutterBottom
             >
-              Hello, {profile.firstName}!
+              {profile &&
+                profile.firstName.toUpperCase()}
+              <span>&nbsp;</span>
+              {profile &&
+               profile.lastName.toUpperCase()}
             </Typography>
             <Typography
-              variant="h5"
+              variant="h7"
               align="center"
               color="textSecondary"
               paragraph
             >
-              {profile.bio}
+              {profile && profile.bio}
             </Typography>
 
             <Grid container spacing={2} justify="center">
