@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import PublicUserDetails from "../../components/UserDetails/PublicUserDetails";
 import PublicUserPosts from "../../components/UserPosts/PublicUserPosts";
-import Footer from "../../components/Footer/Footer";
 
 // useEffect - when component renders for the first time match the current :name in the params and find that specific profile
 
@@ -28,7 +27,6 @@ const PublicProfile = (props) => {
         userpost={userpost}
       />
       <PublicUserPosts {...props} userpost={userpost} />
-      <Footer />
     </div>
   );
 };

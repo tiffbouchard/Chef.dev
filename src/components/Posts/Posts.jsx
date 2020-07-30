@@ -12,6 +12,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import Parser from "html-react-parser";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -44,7 +45,9 @@ const Posts = (props) => {
                 {post.title}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                {post.content.split(" ").slice(0, 40).join(" ")}
+                <Typography paragraph>
+                  {Parser(post.content.split(" ").slice(0, 40).join(" "))}
+                </Typography>
               </Typography>
             </CardContent>
           </CardActionArea>

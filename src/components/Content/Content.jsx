@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./Content.css";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -19,6 +20,7 @@ import ReactPlayer from "react-player";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import TagFacesIcon from "@material-ui/icons/TagFaces";
+import Parser from "html-react-parser";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,9 +93,15 @@ function Content(props) {
         <Typography className={classes2.title} variant="h3" component="h2">
           {props.post && props.post.title}
         </Typography>
-        <Typography className={classes2.date}>
-          {props.post && new Date(props.post.profile.createdAt).toDateString()}
-        </Typography>
+        <CardHeader
+          avatar={
+            <Avatar src="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png" />
+          }
+          title={props.post && props.post.profile.username}
+          subheader={
+            props.post && new Date(props.post.profile.createdAt).toDateString()
+          }
+        />
       </CardContent>
       {/* <CardHeader
         avatar={
@@ -133,9 +141,15 @@ function Content(props) {
           })}
       </Paper>
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {props.post && props.post.content.split(" ").slice(0, 40).join(" ")}
-          ...
+        <Typography variant="body2" component="p">
+          {props.post ? (
+            <Typography paragraph>
+              {Parser(
+                props.post &&
+                  props.post.content.split(" ").slice(0, 40).join(" ")
+              )}
+            </Typography>
+          ) : null}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -145,7 +159,7 @@ function Content(props) {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <IconButton
+        {/* <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
@@ -154,11 +168,13 @@ function Content(props) {
           aria-label="show more"
         >
           <ExpandMoreIcon />
-        </IconButton>
+        </IconButton> */}
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{props.post && props.post.content}</Typography>
+          {props.post ? (
+            <Typography paragraph>{Parser(props.post.content)}</Typography>
+          ) : null}
         </CardContent>
       </Collapse>
     </Card>
