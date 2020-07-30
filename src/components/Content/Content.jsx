@@ -120,7 +120,8 @@ function Content(props) {
               playerVars: { showinfo: 1 },
             },
           }}
-        />) : null}
+        />
+      ) : null}
       <Paper component="ul" className={classes2.root}>
         {props.post &&
           props.post.ingredients.map((ingredient) => {
@@ -133,8 +134,8 @@ function Content(props) {
       </Paper>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          What you will learn:<span>&nbsp;&nbsp;</span>
-          {props.post && props.post.goal}
+          {props.post && props.post.content.split(" ").slice(0, 40).join(" ")}
+          ...
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

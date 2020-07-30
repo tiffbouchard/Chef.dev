@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./UserPosts.css";
 import Card from "@material-ui/core/Card";
-import { makeStyles } from '@material-ui/core/styles';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import CardMedia from '@material-ui/core/CardMedia';
-import Container from '@material-ui/core/Container';
-
+import { makeStyles } from "@material-ui/core/styles";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import CardMedia from "@material-ui/core/CardMedia";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -27,12 +26,12 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   cardContent: {
     flexGrow: 1,
@@ -44,30 +43,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UserPosts = (props) => {
-  const profile = props.profile
+  const profile = props.profile;
   const classes = useStyles();
-
 
   const [userpost, setUserPost] = useState([]);
 
   useEffect(() => {
-    const id = profile._id
+    const id = profile._id;
     fetch(`/api/profiles/${id}`)
       .then((res) => res.json())
-      .then((userpost) =>
-        setUserPost(userpost),
-        console.log(userpost)
-      ).catch((error) => {
+      .then((userpost) => setUserPost(userpost), console.log(userpost))
+      .catch((error) => {
         console.error("error", error);
-
-      })
+      });
   }, []);
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
       <Grid container spacing={4}>
-
         {userpost.map((post) => (
           <Grid item key={post} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
@@ -82,29 +76,28 @@ const UserPosts = (props) => {
                 </Typography>
                 <Typography gutterBottom variant="h6" component="h2">
                   10 tips
-              </Typography>
+                </Typography>
                 <Typography>
-                  {post.content.split(' ').slice(0, 40).join(' ')}
-
+                  {post.content.split(" ").slice(0, 40).join(" ")}
                 </Typography>
               </CardContent>
               <CardActions>
                 <Button size="small" color="primary">
                   View
-              </Button>
+                </Button>
                 <Button size="small" color="primary">
                   Edit
-              </Button>
+                </Button>
                 <Button size="small" color="primary">
                   Delete
-              </Button>
+                </Button>
               </CardActions>
             </Card>
           </Grid>
         ))}
       </Grid>
     </Container>
-  )
+  );
 };
 
 export default UserPosts;

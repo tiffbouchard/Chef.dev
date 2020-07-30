@@ -42,9 +42,26 @@ const DetailPage = (props) => {
         console.error("error", error);
       });
   }, []);
-  if (post) {
-    console.log(post.profile.username);
-  }
+
+  // const [profile, setProfile] = useState();
+
+  // let id = null;
+
+  // if (post) {
+  //   console.log(post.profile._id);
+  //   id = post.profile._id;
+  // } else {
+  //   console.log("nothign");
+  // }
+
+  // useEffect(() => {
+  //   fetch(`/api/profile/details/${id}`)
+  //     .then((res) => res.json())
+  //     .then((profile) => setProfile(profile), console.log(profile))
+  //     .catch((error) => {
+  //       console.error("error", error);
+  //     });
+  // }, []);
 
   return (
     <Grid container component="main" className={classes.root}>

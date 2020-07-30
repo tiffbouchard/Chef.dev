@@ -169,7 +169,7 @@ class SignupForm extends Component {
                   variant="outlined"
                   required
                   fullWidth
-                  name="password"
+                  name="passwordConf"
                   label="Password"
                   type="password"
                   id="password"
