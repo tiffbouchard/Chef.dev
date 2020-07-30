@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import "./NewPostPage.css";
 import postsService from "../../utils/postsService";
-import Footer from "../../components/Footer/Footer";
+
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-// import MUIRichTextEditor from "mui-rte";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const styles = (theme) => ({
@@ -37,10 +39,7 @@ class NewPostPage extends Component {
     try {
       await postsService.create(this.state);
       this.props.handleCreatePost();
-      this.props.history.push("/");
-      // Does REPLACE method refresh teh page so we can see the new blog post?
-      //Dont need this after the redirect is to the blogs details page
-      //Can just push to the details page (or redirect)
+      this.props.history.push("/profile/" + this.state.profile);
     } catch (err) {
       alert("Error");
       //   this.props.updateMessage(err.message);
@@ -51,6 +50,10 @@ class NewPostPage extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
+  };
+
+  handleChangeTextEditor = (html) => {
+    this.setState({ content: html });
   };
 
   handleMultipleChange = (e, values) => {
@@ -95,12 +98,12 @@ class NewPostPage extends Component {
               margin="normal"
               fullWidth
               id="header-image"
-              label="Image URL"
+              label="Header Image URL"
               name="image"
               autoComplete="image"
               autoFocus
               type="text"
-              placeholder="Image URL"
+              placeholder="Header Image Link"
               value={this.state.image}
               onChange={this.handleChange}
             />
@@ -114,7 +117,7 @@ class NewPostPage extends Component {
               autoComplete="video"
               autoFocus
               type="text"
-              placeholder="Image URL"
+              placeholder="Youtube Link"
               value={this.state.video}
               onChange={this.handleChange}
             />
@@ -138,23 +141,15 @@ class NewPostPage extends Component {
                 />
               )}
             />
-            <TextField
-              variant="outlined"
-              fullWidth
-              multiline
-              rows={25}
-              rowsMax={500}
+            <ReactQuill
+              theme="snow"
               placeholder="Chef up a tutorial..."
-              name="content"
               value={this.state.content}
-              onChange={this.handleChange}
-            />
-            {/* <MUIRichTextEditor
-              label="Chef up a tutorial..."
-              inlineToolbar={true}
-              onSave={this.handleChangeContent}
               name="content"
-            /> */}
+              onChange={this.handleChangeTextEditor}
+              modules={NewPostPage.modules}
+              formats={NewPostPage.formats}
+            />
             <Button
               type="submit"
               fullWidth
@@ -166,11 +161,45 @@ class NewPostPage extends Component {
             </Button>
           </form>
         </div>
-        <Footer />
       </Container>
     );
   }
 }
+
+NewPostPage.modules = {
+  toolbar: [
+    [{ header: "1" }, { header: "2" }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["code", "code-block", "link", "video"],
+    ["clean"],
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  },
+};
+
+NewPostPage.formats = [
+  "header",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "code-block",
+  "code",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "video",
+];
 
 const ingredients = [
   "Java",

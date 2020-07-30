@@ -2,7 +2,6 @@ import React, { Component } from "react";
 // import { Link as ReactLink } from "react-router-dom";
 import "./LoginPage.css";
 import profileService from "../../utils/profileService";
-import Footer from "../../components/Footer/Footer";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -123,7 +122,6 @@ class LoginPage extends Component {
             </Grid>
           </form>
         </div>
-        <Footer />
       </Container>
     );
   }
