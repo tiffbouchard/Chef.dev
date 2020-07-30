@@ -18,7 +18,6 @@ class App extends Component {
     super(props);
     this.state = {
       profile: profileService.getProfile(),
-      // posts: postsService.create(),
       allPosts: [],
       currentPost: [],
     };
@@ -37,7 +36,7 @@ class App extends Component {
     this.setState({ posts: postsService.create() });
   };
 
-  getCurrentProfilePosts = () => {};
+  getCurrentProfilePosts = () => { };
 
   async componentDidMount() {
     const response = await fetch("/api/posts/all");
@@ -77,7 +76,7 @@ class App extends Component {
             exact
             path="/post/:id"
             render={(props) => (
-              <DetailPage {...props} currentPost={this.state.currentPost} />
+              <DetailPage {...props} profile={this.state.profile} currentPost={this.state.currentPost} />
             )}
           />
           <Route

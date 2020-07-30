@@ -4,7 +4,7 @@ const tipSchema = new mongoose.Schema(
   {
     content: { type: String, required: true },
     link: String,
-    useful: { type: Boolean, required: true },
+    useful: { type: Boolean, required: false },
     profile: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Profile",

@@ -78,7 +78,7 @@ const DetailPage = (props) => {
       </Hidden>
       <Grid item xs={12} sm={8} md={8} component={Paper}>
         <div className={classes.paper}>
-          <Tips />
+          <Tips {...props} />
         </div>
       </Grid>
       <Grid item xs={12} sm={12} md={12}>
