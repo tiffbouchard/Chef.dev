@@ -25,11 +25,8 @@ class App extends Component {
   }
 
   handleLogout = () => {
-    console.log(this.state.profile);
     profileService.logout();
-    console.log(this.state.profile);
     this.setState({ profile: null });
-    console.log(this.state.profile);
   };
 
   handleSignupOrLogin = () => {
@@ -46,7 +43,6 @@ class App extends Component {
     const response = await fetch("/api/posts/all");
     const data = await response.json();
     this.setState({ allPosts: data });
-    console.log(this.state.allPosts);
 
     //   this.setState({ currentPost: postsService.getPost(id) });
     //   console.log(this.state.currentPost);

@@ -43,7 +43,6 @@ async function login(req, res) {
 async function newProfile(req, res) {
   const newProfile = req.body;
   const currentProfile = req.body.email;
-  console.log(req.body);
   try {
     let profile = await Profile.findOneAndUpdate(
       { email: req.body.email },
@@ -52,7 +51,6 @@ async function newProfile(req, res) {
         new: true,
       }
     );
-
     const token = createJWT(profile);
     res.json({ token });
   } catch (err) {
@@ -62,10 +60,8 @@ async function newProfile(req, res) {
 
 async function userPosts(req, res) {
   const id = req.params.id;
-  console.log(id);
   await Post.find({ profile: id }, function (err, posts) {
     if (err) return err;
-    console.log(posts);
     return res.json(posts);
   });
 }
