@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import { Redirect } from "react-router-dom";
+import { title } from "process";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,59 +28,124 @@ const useStyles = makeStyles((theme) => ({
 
 
 class Search extends Component {
-  inputRef = React.createRef()
 
   constructor() {
     super();
     this.state = {
-      search: ""
+      search: "",
+      current: ""
     }
   }
 
   handleMatch = () => {
-    this.props.allPosts.map(input => {
-      const search = input.title;
-      return search
-    })
+    if (this.state.search > 0)
+      return true
   }
 
-
-
-  findPost = ((input) => {
-    const post = this.props.search
-    const allPosts = this.props.allpost
-    if (allPosts.filter(post) == true) {
-      console.log('good')
-    }
-  })
-
-  handleInput = (input) => {
-    const posts = this.props.allpost
+  redirect = () => {
     const title = this.state.search
-    this.setState({ search: input.target.value })
-    console.log(this.props.allPosts)
-    console.log(title)
+    if (this.state.search !== "") {
+      window.location = `http://localhost:3000/post/${title}`
+      return console.log('working', window)
+      // }
+    }
   }
 
+  // findPost = (() => {
+  //   const post = this.props.search
+  //   const allPosts = this.props.allpost
+  //   // if (allPosts.filter(post) == true) {
+  //   console.log('good')
+  //   // }
+  // })()
 
-  // this.state.search = search
+
+  // handleInput = (input) => {
+  //   const posts = this.props.allpost
+  //   const title = this.state.search
+  //   // this.setState({ search: input.target.value })
+  //   this.setState({ search: input.target.value })
+  //   if (this.state.search !== "") {
+  //     window.location = `http://localhost:3000/post/${title}`
+  //   }
+  // }
 
 
-  // window.location = "http://new-website.com";
+  // getPost = () => {
+  //   this.props.allPosts.map((post, idx) => {
+  //     const obj = {
+  //       title: post.title,
+  //       id: post._id,
+  //       idx: idx,
+  //     }
+  //     return obj
+  //   })
+  // } 
+
+
+  // if the state = an id from allPosts redirect to path/id
 
   render() {
-    const { search } = this.state
+    const search = this.setState.search
+    const searched = this.state.search
+
+    const posts = this.props.allPosts.map((post, idx) => {
+      const obj = {
+        title: post.title,
+        id: post._id,
+        idx: idx,
+      }
+      return obj
+    })
+
+    const redirect = () => {
+      const title = this.state.search
+      console.log(title)
+      if (title !== "") {
+        window.location = `http://localhost:3000/post/${title}`
+      }
+    }
+
+
+    const handleInput = (input) => {
+      const posts = this.props.allpost
+      const title = this.state.search
+      const value = input.target.value
+      this.setState({ search: input.target.value })
+      if (this.state.search !== "") {
+        window.location = `http://localhost:3000/post/${title}`
+      }
+    }
+
+
+
+    const array = posts
+
 
     return (
       <div style={{ width: 300 }} >
         <Autocomplete
-          options={this.props.allPosts.map((option) => option.title)}
+          options={posts}
+          getOptionLabel={(option) => option.id}
+          get
+          renderOption={option =>
+            <span>
+              {option.title}
+
+              {option.id}
+            </span>
+          }
           renderInput={(params) => (
             <div>
               <TextField
                 {...params}
-                value={this.state.search}
-                onKeyPress={this.handleInput}
+                value={search}
+                onKeyDown={handleInput}
+                // onkeyPress={redirect}
+                // onChange={redirect}
+                onPointerEnter={redirect}
+                // onSelect
+                // onKeyDown={this.redirect}
                 label="Search"
                 margin="normal"
                 variant="outlined"
