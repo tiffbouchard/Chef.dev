@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./UserPosts.css";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import Container from '@material-ui/core/Container';
+
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -42,33 +43,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8];
-
 const UserPosts = (props) => {
   const profile = props.profile
   const classes = useStyles();
 
 
-const [userpost, setUserPost] = useState([]);
-    
-useEffect(() => {
-const id = profile._id
-        fetch(`/api/profiles/${id}`)
-        .then((res) => res.json())
-        .then((userpost) => 
+  const [userpost, setUserPost] = useState([]);
+
+  useEffect(() => {
+    const id = profile._id
+    fetch(`/api/profiles/${id}`)
+      .then((res) => res.json())
+      .then((userpost) =>
         setUserPost(userpost),
-    console.log(userpost)
-        ).catch((error) => {
-            console.error("error", error);
-        
-        })
-},[]);
+        console.log(userpost)
+      ).catch((error) => {
+        console.error("error", error);
+
+      })
+  }, []);
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
       <Grid container spacing={4}>
-      
+
         {userpost.map((post) => (
           <Grid item key={post} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
@@ -79,15 +78,15 @@ const id = profile._id
               />
               <CardContent className={classes.cardContent}>
                 <Typography gutterBottom variant="h4" component="h2">
-                  {post.title} 
-              </Typography>
+                  {post.title}
+                </Typography>
                 <Typography gutterBottom variant="h6" component="h2">
                   10 tips
               </Typography>
                 <Typography>
                   {post.content.split(' ').slice(0, 40).join(' ')}
-                  
-              </Typography>
+
+                </Typography>
               </CardContent>
               <CardActions>
                 <Button size="small" color="primary">

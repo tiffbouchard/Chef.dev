@@ -38,7 +38,7 @@ class App extends Component {
     this.setState({ posts: postsService.create() });
   };
 
-  getCurrentProfilePosts = () => {};
+  getCurrentProfilePosts = () => { };
 
   async componentDidMount() {
     const response = await fetch("/api/posts/all");
@@ -53,7 +53,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar handleLogout={this.handleLogout} profile={this.state.profile} />
+        <NavBar
+          handleLogout={this.handleLogout}
+          profile={this.state.profile}
+          allPosts={this.state.allPosts} />
         <Switch>
           <Route
             exact

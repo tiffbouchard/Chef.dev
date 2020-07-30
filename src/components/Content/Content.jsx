@@ -107,19 +107,20 @@ function Content(props) {
       {props.post && props.post.image ? (
         <CardMedia className={classes.media} image={props.post.image} />
       ) : null}
-      <ReactPlayer
-        className={classes.player}
-        width="900px"
-        height="500px"
-        url="https://www.youtube.com/watch?v=DJ1_CKs_LPI&t=1754s"
-        controls
-        muted
-        config={{
-          youtube: {
-            playerVars: { showinfo: 1 },
-          },
-        }}
-      />
+      {props.post && props.post.video ? (
+        <ReactPlayer
+          className={classes.player}
+          width="900px"
+          height="500px"
+          url={props.post.video}
+          controls
+          muted
+          config={{
+            youtube: {
+              playerVars: { showinfo: 1 },
+            },
+          }}
+        />) : null}
       <Paper component="ul" className={classes2.root}>
         {props.post &&
           props.post.ingredients.map((ingredient) => {
