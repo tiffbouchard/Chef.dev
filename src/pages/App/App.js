@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import profileService from "../../utils/profileService";
 import postsService from "../../utils/postsService";
@@ -83,18 +83,20 @@ class App extends Component {
           <Route
             exact
             path="/profile"
-            render={() => <ProfilePage profile={this.state.profile} />}
+            render={() => profileService.getProfile() ? 
+               <ProfilePage profile={this.state.profile} /> : <Redirect to='/login'/>
+              }
           />
           <Route
             exact
             path="/profile/new"
-            render={({ history }) => (
+            render={({ history }) => profileService.getProfile() ? (
               <NewProfileForm
                 history={history}
                 profile={this.state.profile}
                 handleSignupOrLogin={this.handleSignupOrLogin}
               />
-            )}
+            ) : <Redirect to='/login'/>}
           />
           <Route
             exact
