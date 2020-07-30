@@ -102,15 +102,15 @@ const UserPosts = (props) => {
             <Card className={classes.card}>
               <CardMedia
                 className={classes.cardMedia}
-                image="https://source.unsplash.com/random"
-                title="Image title"
+                image={post.image}
+                title={post.title}
               />
               <CardContent className={classes.cardContent}>
                 <Typography gutterBottom variant="h4" component="h2">
                   {post.title}
                 </Typography>
                 <Typography gutterBottom variant="h6" component="h2">
-                  10 tips
+                {new Date(post.createdAt).toDateString()}
                 </Typography>
                 <Typography>
                   {post.content.split(" ").slice(0, 40).join(" ")}
