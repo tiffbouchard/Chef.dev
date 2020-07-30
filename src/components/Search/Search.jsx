@@ -91,6 +91,7 @@ class Search extends Component {
               {...params}
               value={this.state.search}
               onChange={this.handleInput}
+              onChange={(event, value) => console.log(value)}
               // onKeyPress
               label="Search"
               margin="normal"
