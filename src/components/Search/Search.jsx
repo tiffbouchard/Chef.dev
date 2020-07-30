@@ -47,43 +47,10 @@ class Search extends Component {
     if (this.state.search !== "") {
       window.location = `http://localhost:3000/post/${title}`
       return console.log('working', window)
-      // }
     }
   }
 
-  // findPost = (() => {
-  //   const post = this.props.search
-  //   const allPosts = this.props.allpost
-  //   // if (allPosts.filter(post) == true) {
-  //   console.log('good')
-  //   // }
-  // })()
 
-
-  // handleInput = (input) => {
-  //   const posts = this.props.allpost
-  //   const title = this.state.search
-  //   // this.setState({ search: input.target.value })
-  //   this.setState({ search: input.target.value })
-  //   if (this.state.search !== "") {
-  //     window.location = `http://localhost:3000/post/${title}`
-  //   }
-  // }
-
-
-  // getPost = () => {
-  //   this.props.allPosts.map((post, idx) => {
-  //     const obj = {
-  //       title: post.title,
-  //       id: post._id,
-  //       idx: idx,
-  //     }
-  //     return obj
-  //   })
-  // } 
-
-
-  // if the state = an id from allPosts redirect to path/id
 
   render() {
     const search = this.setState.search
