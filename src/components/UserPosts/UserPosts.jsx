@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import Container from '@material-ui/core/Container';
-
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -60,15 +60,32 @@ const UserPosts = (props) => {
       ).catch((error) => {
         console.error("error", error);
 
-      })
+      }
+      )
   }, []);
+
+  async function onDeleteClick (index) {
+      await handleDeletePost(userpost[index]._id)    
+  }
+
+   async function handleDeletePost(id) {
+   await fetch(`/api/posts/delete/${id}`, {
+    method: "DELETE", })
+   .then((res) => res.json())
+   .then(data => {
+      let updateUserPosts = userpost.filter(post => {
+        return id !== post._id
+      })
+      setUserPost(updateUserPosts);
+    });
+  }
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
       <Grid container spacing={4}>
 
-        {userpost.map((post) => (
+        {userpost.map((post,index) => (
           <Grid item key={post} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
               <CardMedia
@@ -89,13 +106,17 @@ const UserPosts = (props) => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" color="primary">
+                <Button 
+                component={Link}
+                to={`/post/${post._id}`}
+                size="small" 
+                color="primary">
                   View
               </Button>
-                <Button size="small" color="primary">
-                  Edit
-              </Button>
-                <Button size="small" color="primary">
+                <Button 
+                onClick={() => { onDeleteClick(index)} }
+                size="small" 
+                color="primary">
                   Delete
               </Button>
               </CardActions>
