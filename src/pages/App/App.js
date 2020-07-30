@@ -93,7 +93,7 @@ class App extends Component {
           <Route
             exact
             path="/profile/new"
-            render={() => <NewProfileForm profile={this.state.profile} />}
+            render={({history}) => <NewProfileForm history={history} profile={this.state.profile} handleSignupOrLogin={this.handleSignupOrLogin} />}
           />
 
           <Route
