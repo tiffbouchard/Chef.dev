@@ -11,6 +11,8 @@ import DetailPage from "../../pages/DetailPage/DetailPage";
 import ProfilePage from "../../pages/ProfilePage/Profile";
 import NewPostPage from "../NewPostPage/NewPostPage";
 import NewProfileForm from "../../components/NewProfileForm/NewProfileForm";
+import PublicProfile from "../../pages/ProfilePage/PublicProfile";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +37,7 @@ class App extends Component {
     this.setState({ posts: postsService.create() });
   };
 
-  getCurrentProfilePosts = () => { };
+  getCurrentProfilePosts = () => {};
 
   async componentDidMount() {
     const response = await fetch("/api/posts/all");
@@ -52,14 +54,14 @@ class App extends Component {
         <NavBar
           handleLogout={this.handleLogout}
           profile={this.state.profile}
-          allPosts={this.state.allPosts} />
+          allPosts={this.state.allPosts}
+        />
         <Switch>
           <Route
             exact
             path="/"
             render={() => <HomePage allPosts={this.state.allPosts} />}
           />
-
           <Route
             exact
             path="/post/new"
@@ -71,7 +73,6 @@ class App extends Component {
               />
             )}
           />
-
           <Route
             exact
             path="/post/:id"
@@ -79,19 +80,22 @@ class App extends Component {
               <DetailPage {...props} currentPost={this.state.currentPost} />
             )}
           />
-
           <Route
             exact
             path="/profile"
             render={() => <ProfilePage profile={this.state.profile} />}
           />
-
           <Route
             exact
             path="/profile/new"
-            render={({history}) => <NewProfileForm history={history} profile={this.state.profile} handleSignupOrLogin={this.handleSignupOrLogin} />}
+            render={({ history }) => (
+              <NewProfileForm
+                history={history}
+                profile={this.state.profile}
+                handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
           />
-
           <Route
             exact
             path="/signup"
@@ -102,7 +106,6 @@ class App extends Component {
               />
             )}
           />
-
           <Route
             exact
             path="/login"
@@ -111,6 +114,13 @@ class App extends Component {
                 history={history}
                 handleSignupOrLogin={this.handleSignupOrLogin}
               />
+            )}
+          />
+          <Route
+            exact
+            path="/profile/:id"
+            render={(props) => (
+              <PublicProfile profile={this.state.profile} {...props} />
             )}
           />
         </Switch>

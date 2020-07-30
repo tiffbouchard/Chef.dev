@@ -15,8 +15,7 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    minWidth: "60vw",
-    maxWidth: "100vw",
+    maxWidth: "60vw",
     margin: "0px 0 30px 0",
   },
   media: {
@@ -45,8 +44,7 @@ const Posts = (props) => {
                 {post.title}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                {post.goal}
-                {/* get a snippet of the whole content and display here */}
+                {post.content.split(" ").slice(0, 40).join(" ")}
               </Typography>
             </CardContent>
           </CardActionArea>

@@ -7,6 +7,7 @@ const profileCtrl = require("../../controllers/profiles");
 router.post("/signup", profileCtrl.signup);
 router.post("/login", profileCtrl.login);
 router.post("/newprofile", profileCtrl.newProfile);
+router.get("/public/:id", profileCtrl.userPublicPosts);
 router.get("/:id", profileCtrl.userPosts);
 
 /*---------- Protected Routes ----------*/

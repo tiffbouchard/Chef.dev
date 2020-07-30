@@ -6,7 +6,6 @@ const postSchema = new mongoose.Schema(
     image: String,
     video: String,
     ingredients: { type: [String], required: true },
-    goal: { type: String, required: true },
     content: { type: String, required: true },
     profile: {
       type: mongoose.Schema.Types.ObjectId,
