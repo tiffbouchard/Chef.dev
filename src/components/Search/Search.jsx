@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { fade, makeStyles } from "@material-ui/core/styles";
+import { Redirect } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +37,6 @@ class Search extends Component {
   }
 
   handleMatch = () => {
-    console.log('stuff')
     this.props.allPosts.map(input => {
       const search = input.title;
       return search
@@ -59,48 +59,35 @@ class Search extends Component {
     this.setState({ search: input.target.value })
     console.log(this.props.allPosts)
     console.log(title)
-    console.log(this.handleMatch())
-    // if (this.state.search == posts.find(title)) {
-    //   console.log('working')
-    // }
   }
 
 
   // this.state.search = search
 
 
-
-
+  // window.location = "http://new-website.com";
 
   render() {
     const { search } = this.state
 
     return (
-      // <div className={classes.search}>
       <div style={{ width: 300 }} >
         <Autocomplete
-          classes={{
-            // root: classes.inputRoot,
-            // input: classes.inputInput,
-          }}
-          // id="free-solo-demo"
-          // freeSolo
           options={this.props.allPosts.map((option) => option.title)}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              value={this.state.search}
-              onChange={this.handleInput}
-              onChange={(event, value) => console.log(value)}
-              // onKeyPress
-              label="Search"
-              margin="normal"
-              variant="outlined"
-            />
+            <div>
+              <TextField
+                {...params}
+                value={this.state.search}
+                onKeyPress={this.handleInput}
+                label="Search"
+                margin="normal"
+                variant="outlined"
+              />
+            </div>
           )}
         />
       </div >
-      // </div >
     );
   }
 }

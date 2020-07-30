@@ -4,6 +4,7 @@ const postSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     image: String,
+    video: String,
     ingredients: { type: [String], required: true },
     goal: { type: String, required: true },
     content: { type: String, required: true },

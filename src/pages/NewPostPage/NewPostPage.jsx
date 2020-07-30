@@ -29,6 +29,7 @@ class NewPostPage extends Component {
     goal: "",
     ingredients: [],
     image: "",
+    video: "",
     profile: this.props.profile._id,
   };
 
@@ -102,6 +103,20 @@ class NewPostPage extends Component {
               type="text"
               placeholder="Image URL"
               value={this.state.image}
+              onChange={this.handleChange}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="header-image"
+              label="Youtube Link"
+              name="video"
+              autoComplete="video"
+              autoFocus
+              type="text"
+              placeholder="Image URL"
+              value={this.state.video}
               onChange={this.handleChange}
             />
             <Autocomplete

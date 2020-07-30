@@ -18,6 +18,52 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Search from "../Search/Search"
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Slide from '@material-ui/core/Slide';
+import Fab from '@material-ui/core/Fab';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import Zoom from '@material-ui/core/Zoom';
+import PropTypes from 'prop-types';
+
+function ScrollTop(props) {
+  const { children, window } = props;
+  const classes = useStyles();
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  return (
+    <Zoom in={trigger}>
+      <div onClick={handleClick} role="presentation" className={classes.root}>
+        {children}
+      </div>
+    </Zoom>
+  );
+}
+
+function HideOnScroll(props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({ target: window ? window() : undefined });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -86,6 +132,11 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     maxWidth: 120,
   },
+  root: {
+    position: 'fixed',
+    bottom: theme.spacing(4),
+    right: theme.spacing(4),
+  },
 }));
 
 export default function NavBar(props) {
@@ -117,7 +168,9 @@ export default function NavBar(props) {
 
   let nav = props.profile ? (
     <>
-      <Typography>{props.profile.username}</Typography>
+      <button component={Link} to="/profile">
+        <Typography>{props.profile.username}</Typography>
+      </button>
       <Button
         color="inherit"
         className="NavBar-link"
@@ -246,13 +299,12 @@ export default function NavBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={'handleMenuClose'}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>
         My account</MenuItem>
     </Menu>
   );
   const mobileMenuId = "primary-search-account-menu-mobile";
-
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -286,44 +338,52 @@ export default function NavBar(props) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar>
-          <Button component={Link} to="/">
-            <img
-              src="https://64.media.tumblr.com/8e056af594b52dbee776983c74722ed4/c48c313a8e70bcbb-ef/s540x810/a0605413c7b05e0aac22b564409ec6fae3f45048.png"
-              alt="logo"
-              className={classes.logo}
-            />
-          </Button>
-          <Typography
-            className={classes.title}
-            variant="h6"
-            noWrap
-          >
-          </Typography>
-          <Search
-            allPosts={props.allPosts}
-            onRequestSearch={() => console.log('onRequestSearch')}
-          />
-
-
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>{login}</div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
+      <HideOnScroll {...props}>
+        <AppBar position="static">
+          <Toolbar>
+            <Button component={Link} to="/">
+              <img
+                src="https://64.media.tumblr.com/8e056af594b52dbee776983c74722ed4/c48c313a8e70bcbb-ef/s540x810/a0605413c7b05e0aac22b564409ec6fae3f45048.png"
+                alt="logo"
+                className={classes.logo}
+              />
+            </Button>
+            <Typography
+              className={classes.title}
+              variant="h6"
+              noWrap
             >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
+            </Typography>
+            <Search
+              allPosts={props.allPosts}
+            />
+
+
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>{login}</div>
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
+      <Toolbar id="back-to-top-anchor" />
       {renderMobileMenu}
       {renderMenu}
+      <ScrollTop {...props}>
+        <Fab color="secondary" size="small" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
+
     </div>
   );
 }
