@@ -30,7 +30,6 @@ function getPosts() {
         });
 }
 
-//getting post by fetching???
 function getPost() {
     fetch(BASE_URL + "/")
         .then(async(response) => {
