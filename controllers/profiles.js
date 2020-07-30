@@ -40,20 +40,20 @@ async function login(req, res) {
 }
 
 async function newProfile(req, res) {
-    const newProfile = req.body
-    const currentProfile = req.body.email
-    console.log(req.body)
+    const newProfile = req.body;
+    const currentProfile = req.body.email;
+    console.log(req.body);
     try {
         let profile = await Profile.findOneAndUpdate({ email: req.body.email }, { $set: newProfile }, {
-            new: true
+            new: true,
         });
 
         const token = createJWT(profile);
         res.json({ token });
-
     } catch (err) {
         return res.status(400).json(err);
     }
+
 }
 
 async function userPosts(req, res) {
@@ -66,6 +66,7 @@ async function userPosts(req, res) {
 
     })
 };
+
 
 // Helper Functions
 

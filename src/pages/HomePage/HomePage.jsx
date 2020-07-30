@@ -1,19 +1,12 @@
 import React from "react";
-import postsService from "../../utils/postsService";
 import Feed from "../../components/Feed/Feed";
 import MainSidebar from "../../components/MainSidebar/MainSidebar";
-// import { Grid } from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Hidden from "@material-ui/core/Hidden";
-import Footer from "../../components/Footer/Footer"
-
+import Footer from "../../components/Footer/Footer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   sidebar: {
-    backgroundColor: "grey",
+    backgroundColor: "",
   },
 }));
 
@@ -45,25 +38,11 @@ const HomePage = (props) => {
           <MainSidebar />
         </Grid>
       </Hidden>
-      <Grid item xs={123} sm={12} md={12} className={classes.sidebar}>
+      <Grid item xs={12} sm={12} md={12}>
         <Footer />
       </Grid>
     </Grid>
   );
 };
-
-// {
-//   props.colors.map((color, idx) => (
-//     <button
-//       key={color}
-//       className={styles.button}
-//       style={{
-//         backgroundColor: props.selColorIdx === idx ? "white" : color,
-//         borderColor: color,
-//       }}
-//       onClick={() => props.handleColorSelection(idx)}
-//     />
-//   ));
-// }
 
 export default HomePage;

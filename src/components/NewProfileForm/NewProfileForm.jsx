@@ -4,11 +4,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -55,18 +51,16 @@ class NewProfileForm extends Component {
     try {
       await profileService.newProfile(this.state);
       this.props.handleSignupOrLogin();
-  
+
       this.props.history.push("/");
-      console.log(this.props.history)
+      console.log(this.props.history);
     } catch (err) {
-console.log(err)
+      console.log(err);
     }
   };
 
   isFormInvalid() {
-    return !(
-      this.state.bio 
-    );
+    return !this.state.bio;
   }
 
   render() {
@@ -86,8 +80,8 @@ console.log(err)
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                   multiline="true"
-                   rows="5"
+                  multiline="true"
+                  rows="5"
                   autoComplete="fname"
                   name="bio"
                   variant="outlined"
@@ -102,7 +96,7 @@ console.log(err)
                   onChange={this.handleChange}
                 />
               </Grid>
-              <Grid item xs={12} >
+              <Grid item xs={12}>
                 <TextField
                   variant="outlined"
                   fullWidth
@@ -130,8 +124,7 @@ console.log(err)
                   onChange={this.handleChange}
                 />
               </Grid>
-     
-             
+
               <Button
                 disabled={this.isFormInvalid()}
                 type="submit"
@@ -142,7 +135,6 @@ console.log(err)
               >
                 Create Profile
               </Button>
-        
             </Grid>
           </form>
         </div>
