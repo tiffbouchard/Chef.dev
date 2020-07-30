@@ -8,7 +8,6 @@ import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Hidden from "@material-ui/core/Hidden";
-import Footer from "../../components/Footer/Footer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,9 +79,6 @@ const DetailPage = (props) => {
         <div className={classes.paper}>
           <Tips {...props} />
         </div>
-      </Grid>
-      <Grid item xs={12} sm={12} md={12}>
-        <Footer />
       </Grid>
     </Grid>
   );
