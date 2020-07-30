@@ -1,4 +1,5 @@
 const Profile = require("../models/profile");
+const Post = require("../models/post");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 
@@ -6,6 +7,7 @@ module.exports = {
     signup,
     login,
     newProfile,
+    userPosts
 };
 
 async function signup(req, res) {
@@ -46,7 +48,6 @@ async function newProfile(req, res) {
             new: true
         });
 
-
         const token = createJWT(profile);
         res.json({ token });
 
@@ -55,6 +56,16 @@ async function newProfile(req, res) {
     }
 }
 
+async function userPosts(req, res) {
+    const id = req.params.id
+    console.log(id)
+    await Post.find({ profile: id }, function(err, posts) {
+        if (err) return err;
+        console.log(posts)
+        return res.json(posts)
+
+    })
+};
 
 // Helper Functions
 

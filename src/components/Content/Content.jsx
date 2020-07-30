@@ -86,7 +86,7 @@ export default function Content(props) {
         setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
     };
     const [post, setPost] = useState(null);
-    
+    console.log(props.match.params)
     useEffect(() => {
   
 
