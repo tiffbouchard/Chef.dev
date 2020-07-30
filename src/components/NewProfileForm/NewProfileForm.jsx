@@ -133,7 +133,7 @@ class NewProfileForm extends Component {
                 color="primary"
                 className={classes.submit}
               >
-                Create Profile
+                Update Profile
               </Button>
             </Grid>
           </form>
