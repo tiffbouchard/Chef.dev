@@ -1,214 +1,166 @@
-import React, {useEffect, useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red, green } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ReactPlayer from 'react-player'
-import Chip from '@material-ui/core/Chip';
-import Paper from '@material-ui/core/Paper';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
-import postsService from "../../utils/postsService";
-
+import React, { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Collapse from "@material-ui/core/Collapse";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { red, green } from "@material-ui/core/colors";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import ReactPlayer from "react-player";
+import Chip from "@material-ui/core/Chip";
+import Paper from "@material-ui/core/Paper";
+import TagFacesIcon from "@material-ui/icons/TagFaces";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        maxWidth: '90%',
-    },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
-    avatar: {
-        backgroundColor: red[500],
-    },
-    player: {
-        // height: '100%',
-        // width: '100%',
-        // minHeight: '225px'
-    }
+  root: {
+    minWidth: "100%",
+    maxWidth: "95%",
+    padding: "-5px",
+    margin: "-30px",
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(180deg)",
+  },
+  avatar: {
+    backgroundColor: red[500],
+  },
+  player: {
+    // height: '100%',
+    // width: '100%',
+    // minHeight: '225px'
+  },
 }));
 
 const useStyles2 = makeStyles((theme) => ({
-    root: {
-        display: "flex",
-        flexDirection: "flex",
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        listStyle: 'none',
-        padding: '15px',
-        margin: '30px',
-    },
-    chip: {
-        margin: theme.spacing(0.5),
-    },
+  root: {
+    display: "flex",
+    flexDirection: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap",
+    listStyle: "none",
+    padding: "15px",
+    margin: "30px",
+  },
+  chip: {
+    margin: theme.spacing(0.5),
+  },
+  title: {
+    margin: "10px 0 0 0",
+  },
+  date: {
+    fontSize: "15px",
+    color: "grey",
+  },
 }));
 
-export default function Content(props) {
-    const classes = useStyles();
+function Content(props) {
+  const classes = useStyles();
 
-    const classes2 = useStyles2();
+  const classes2 = useStyles2();
 
-    const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(false);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
-    const [chipData, setChipData] = React.useState([
-        { key: 0, label: 'React' },
-        { key: 1, label: 'Material UI' },
-    ]);
-
-    const handleDelete = (chipToDelete) => () => {
-        setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
-    };
-    const [post, setPost] = useState(null);
-    
-    useEffect(() => {
-  
-
-            const id = props.match.params.id
-            fetch(`/api/posts/${id}`)
-            .then((res) => res.json())
-            .then((post) => 
-            setPost(post)
-        
-            ).catch((error) => {
-                console.error("error", error);
-            })
-    
-        
-    },[]);
-   if(post) {  console.log(post.profile.username) } 
-
-
-// const id = props.match.params.id
-// const test = []
-// test[0] = await postsService.getPost(id)
-//     // this.setState({ currentPost: postsService.getPost(id) });
-//     console.log(test);
- 
-
-    return (
-        <Card className={classes.root}>
-            <CardHeader
-                avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar}>
-                        R
-          </Avatar>
-                }
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
-            />
-            <ReactPlayer
-                className={classes.player}
-                width="900px"
-                height="500px"
-                url="https://www.youtube.com/watch?v=DJ1_CKs_LPI&t=1754s"
-                controls
-                muted
-                config={{
-                    youtube: {
-                        playerVars: { showinfo: 1 }
-                    }
-                }}
-            />
-            <Paper component="ul" className={classes2.root}>
-                {chipData.map((data) => {
-                    return (
-                        <li key={data.key}>
-                            <Chip
-                                label={data.label}
-                                onDelete={handleDelete(data)}
-                                className={classes.chip}
-                            />
-                        </li>
-                    );
-                })}
-            </Paper>
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-            <h3>{props.match.params.id}</h3>
-       <h3>{post && post.title}</h3>
-          
-                  {post && post.content}
+  return (
+    <Card className={classes.root}>
+      <CardContent>
+        <Typography className={classes2.title} variant="h3" component="h2">
+          {props.post && props.post.title}
         </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
-                </IconButton>
-                <IconButton
-                    className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon />
-                </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                    <Typography paragraph>Method:</Typography>
-                    <Typography paragraph>
-                        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                        minutes.
-          </Typography>
-                    <Typography paragraph>
-                        Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                        heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                        browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-                        and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-                        pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-                        saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-                    <Typography paragraph>
-                        Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-                        without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-                        medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-                        again without stirring, until mussels have opened and rice is just tender, 5 to 7
-                        minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-                    <Typography>
-                        Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-                </CardContent>
-            </Collapse>
-        </Card>
-    );
+        <Typography className={classes2.date}>
+          {props.post && new Date(props.post.profile.createdAt).toDateString()}
+        </Typography>
+      </CardContent>
+      {/* <CardHeader
+        avatar={
+          <Avatar src="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png" />
+        }
+        title={props.post && props.post.profile.username}
+        subheader={
+          props.post && new Date(props.post.profile.createdAt).toDateString()
+        }
+      /> */}
+      {props.post && props.post.image ? (
+        <CardMedia className={classes.media} image={props.post.image} />
+      ) : null}
+      <ReactPlayer
+        className={classes.player}
+        width="900px"
+        height="500px"
+        url="https://www.youtube.com/watch?v=DJ1_CKs_LPI&t=1754s"
+        controls
+        muted
+        config={{
+          youtube: {
+            playerVars: { showinfo: 1 },
+          },
+        }}
+      />
+      <Paper component="ul" className={classes2.root}>
+        {props.post &&
+          props.post.ingredients.map((ingredient) => {
+            return (
+              <li>
+                <Chip label={ingredient} className={classes.chip} />
+              </li>
+            );
+          })}
+      </Paper>
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          What you will learn:<span>&nbsp;&nbsp;</span>
+          {props.post && props.post.goal}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>{props.post && props.post.content}</Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+  );
 }
 
-// export default Content;
+export default Content;

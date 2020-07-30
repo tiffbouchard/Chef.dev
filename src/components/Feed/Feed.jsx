@@ -5,7 +5,7 @@ import Posts from "../Posts/Posts";
 const Feed = (props) => {
   return (
     <div>
-      <Posts className="feed" allPosts={props.allPosts} />
+      <Posts allPosts={props.allPosts} />
     </div>
   );
 };

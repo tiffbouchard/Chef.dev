@@ -252,6 +252,7 @@ export default function NavBar(props) {
     </Menu>
   );
   const mobileMenuId = "primary-search-account-menu-mobile";
+
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
