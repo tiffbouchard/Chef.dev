@@ -55,7 +55,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar handleLogout={this.handleLogout} profile={this.state.profile} />
+        <NavBar
+          handleLogout={this.handleLogout}
+          profile={this.state.profile}
+          allPosts={this.state.allPosts} />
         <Switch>
           <Route
             exact
@@ -86,7 +89,7 @@ class App extends Component {
           <Route
             exact
             path="/profile/new"
-            render={({history}) => <NewProfileForm history={history} profile={this.state.profile} handleSignupOrLogin={this.handleSignupOrLogin}/>}
+            render={({ history }) => <NewProfileForm history={history} profile={this.state.profile} handleSignupOrLogin={this.handleSignupOrLogin} />}
           />
 
           <Route
