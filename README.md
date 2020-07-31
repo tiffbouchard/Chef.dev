@@ -51,10 +51,10 @@ User:
 - [ERD](https://app.diagrams.net/#Hdaronefrancis%2Fchef.dev%2Fmaster%2FERDs.drawio)
 
 ## Screenshots
-<img src="" caption="Homepage"/>
-<img src="" caption="User Dashboard"/>
-<img src="" caption="User Profile"/>
-<img src="" caption="User Profile Activities and Routines"/>
+<img src="" caption=""/>
+<img src="" caption=""/>
+<img src="" caption=""/>
+<img src="" caption=""/>
 
 ## Getting Started 
 Click [here](https://.herokuapp.com/) to view a demo 
@@ -64,6 +64,12 @@ Click [here](https://.herokuapp.com/) to view a demo
 
 - Allow users to upload a profile picture / image for their post
 - Allow users to submit an ingredient
+- Complete validations on sign up form so no two users can have the same email or username
+- Implement the ability to load more posts on click 
+- When updating a profile, show their previous profile inputs in the form fields instead of empty fields
+- If a page doesn't exist show a custom error page, right now it just takes you to a blank page of that specific template - public profiles and posts 
+- Sort and categorize posts and have them display on the sidebar depending on these categories
+- Make the ingredients list on the main sidebar dynamic and when clicked you can view recipes with those ingredients
 
 ## Contributors
 <a href="https://github.com/daronefrancis/chef.dev/graphs/contributors">

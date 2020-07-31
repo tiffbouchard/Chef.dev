@@ -81,13 +81,12 @@ class NewProfileForm extends Component {
                   autoComplete="fname"
                   name="bio"
                   variant="outlined"
-                  required
                   fullWidth
                   id="bio"
                   label="Bio"
                   autoFocus
                   type="text"
-                  placeholder="Add Bio Here"
+                  placeholder="Bio"
                   value={this.state.bio}
                   onChange={this.handleChange}
                 />

@@ -25,6 +25,7 @@ import Parser from "html-react-parser";
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: "60vw",
+    maxWidth: "60vw",
     margin: "5px 0 0 0",
   },
   media: {
@@ -129,10 +130,7 @@ function Content(props) {
         <Typography variant="body2" component="p">
           {props.post ? (
             <Typography paragraph>
-              {Parser(
-                props.post &&
-                  props.post.content.split(" ").slice(0, 40).join(" ")
-              )}
+              {Parser(props.post && props.post.content)}
             </Typography>
           ) : null}
         </Typography>
