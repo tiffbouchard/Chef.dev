@@ -51,7 +51,8 @@ class TipsForm extends Component {
     const { classes } = this.props;
     return (
       <form onSubmit={this.handleSubmit} >
-        <TextField
+      {this.props.profile ? 
+      <TextField
           multiline
           rows={10}
           rowsMax={500}
@@ -69,11 +70,32 @@ class TipsForm extends Component {
           value={this.state.content}
           onChange={this.handleChange}
         />
-
+        :   <TextField
+        multiline
+        rows={10}
+        rowsMax={500}
+        variant="outlined"
+        margin="normal"
+        disabled
+        fullWidth
+        id="Tip"
+        label="Tip"
+        name="content"
+        autoComplete="Tip"
+        autoFocus
+        type="text"
+        placeholder="Tip"
+        value={this.state.content}
+        onChange={this.handleChange}
+      />}
+        {this.props.profile ? 
         <Button type="submit" fullWidth variant="contained" color="primary" className={classes.form}>
           Post
-        </Button>
+       </Button> : <Button type="submit" fullWidth variant="contained" color="primary" className={classes.form}>
+          Post
+        </Button> }
       </form>
+      
     );
   }
 }
