@@ -7,7 +7,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -40,6 +39,7 @@ class SignupForm extends Component {
     email: "",
     password: "",
     passwordConf: "",
+    profiles: this.props.profiles,
   };
 
   handleChange = (e) => {
@@ -50,16 +50,50 @@ class SignupForm extends Component {
     });
   };
 
+  // validateUsername = () => {
+  //   new Promise(function (resolve, reject) {
+  //     this.state.profiles.forEach((profile) => {
+  //       if (profile.username === this.state.username) {
+  //         resolve("Stuff worked!");
+  //       } else {
+  //         reject(Error("It broke"));
+  //       }
+  //     });
+  //   });
+  // };
+
+  // validateUsername = () => {
+  //    {
+  //     if () {
+  //       return;
+  //     } else {
+  //       return err
+  //     }
+  //   });
+  // };
+
+  // validateUsername = () => {
+  //   this.state.profiles.forEach((profile) => {
+  //     if (profile.email !== this.state.email) {
+  //       return;
+  //     } else {
+  //       break;
+  //     }
+  //   });
+  // };
+
   handleSubmit = async (e) => {
     e.preventDefault();
+    // if (this.validateUsername()) {
+    //   console.log("hi");
+    // }
+    // this.validateUsername();
+    // this.validateEmail();
     try {
       await profileService.signup(this.state);
-      // Let <App> know a user has signed up!
       this.props.handleSignupOrLogin();
-      // Successfully signed up - show GamePage
       this.props.history.push("/");
     } catch (err) {
-      // Invalid user data (probably duplicate email)
       this.props.updateMessage(err.message);
     }
   };
@@ -80,9 +114,6 @@ class SignupForm extends Component {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -191,8 +222,8 @@ class SignupForm extends Component {
               </Button>
               <Grid container justify="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    Already have an account? Sign in
+                  <Link href="/login" variant="body2">
+                    Already have an account? Log in
                   </Link>
                 </Grid>
               </Grid>

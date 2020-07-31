@@ -1,29 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./NavBar.css";
+
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ExitToApp from "@material-ui/icons/ExitToApp";
+import VpnKey from "@material-ui/icons/VpnKey";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import Search from "../Search/Search"
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Slide from '@material-ui/core/Slide';
-import Fab from '@material-ui/core/Fab';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import Zoom from '@material-ui/core/Zoom';
-import PropTypes from 'prop-types';
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import Slide from "@material-ui/core/Slide";
+import Fab from "@material-ui/core/Fab";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import Zoom from "@material-ui/core/Zoom";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -38,10 +33,12 @@ function ScrollTop(props) {
   });
 
   const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      "#back-to-top-anchor"
+    );
 
     if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      anchor.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
 
@@ -66,6 +63,9 @@ function HideOnScroll(props) {
 }
 
 const useStyles = makeStyles((theme) => ({
+  navbar: {
+    backgroundColor: "#6AA9AA",
+  },
   grow: {
     flexGrow: 1,
   },
@@ -122,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 120,
   },
   root: {
-    position: 'fixed',
+    position: "fixed",
     bottom: theme.spacing(4),
     right: theme.spacing(4),
   },
@@ -155,26 +155,17 @@ export default function NavBar(props) {
 
   const menuId = "primary-search-account-menu";
 
-  let nav = props.profile ? (
-    <>
-      <button component={Link} to="/profile">
-        <Typography>Hello, {props.profile.username}</Typography>
-      </button>
-    </>
-  ) : (
-      <>
-        <Button color="inherit" component={Link} to="/login">
-          Login
-      </Button>
-        <Button color="inherit" component={Link} to="/signup">
-          Sign up
-      </Button>
-      </>
-    );
   let login = props.profile ? (
     <>
+      <Button
+        variant="contained"
+        color="secondary"
+        component={Link}
+        to="/post/new"
+      >
+        New Post
+      </Button>
       <Typography>Hello, {props.profile.username}</Typography>
-
 
       <IconButton
         edge="end"
@@ -202,7 +193,15 @@ export default function NavBar(props) {
   ) : null;
   let mobileMenu = props.profile ? (
     <>
-      <MenuItem component={Link} to='/profile'>
+      <MenuItem
+        variant="contained"
+        color="secondary"
+        component={Link}
+        to="/post/new"
+      >
+        NEW POST
+      </MenuItem>
+      <MenuItem component={Link} to="/profile">
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
@@ -239,7 +238,7 @@ export default function NavBar(props) {
             aria-haspopup="true"
             color="inherit"
           >
-            <ExitToApp />
+            <VpnKey />
           </IconButton>
           <p>Login</p>
         </MenuItem>
@@ -250,7 +249,7 @@ export default function NavBar(props) {
             aria-haspopup="true"
             color="inherit"
           >
-            <ExitToApp />
+            <VpnKey />
           </IconButton>
           <p>Sign Up</p>
         </MenuItem>
@@ -266,12 +265,19 @@ export default function NavBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={() => {
-        props.handleLogout();
-        handleMenuClose();
-      }}>
-        Logout</MenuItem>
+      <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>
+        <AccountCircle />
+        Profile
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          props.handleLogout();
+          handleMenuClose();
+        }}
+      >
+        <ExitToApp />
+        Logout
+      </MenuItem>
     </Menu>
   );
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -294,11 +300,15 @@ export default function NavBar(props) {
   return (
     <div className={classes.grow}>
       <HideOnScroll {...props}>
-        <AppBar position="static" id="back-to-top-anchor">
+        <AppBar
+          className={classes.navbar}
+          position="static"
+          id="back-to-top-anchor"
+        >
           <Toolbar>
             <Button component={Link} to="/">
               <img
-                src="https://64.media.tumblr.com/8e056af594b52dbee776983c74722ed4/c48c313a8e70bcbb-ef/s540x810/a0605413c7b05e0aac22b564409ec6fae3f45048.png"
+                src="https://64.media.tumblr.com/ecb4fe8e5932045d4b2d5b54004a575a/451f3ea27689b55a-63/s500x750/8b7026a59fe0e7b0c18f41598a9e521cf0c4f8c2.png"
                 alt="logo"
                 className={classes.logo}
               />
@@ -307,12 +317,7 @@ export default function NavBar(props) {
               className={classes.title}
               variant="h6"
               noWrap
-            >
-            </Typography>
-            <Search
-              className={classes.search}
-              allPosts={props.allPosts}
-            />
+            ></Typography>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>{login}</div>
             <div className={classes.sectionMobile}>
@@ -336,7 +341,6 @@ export default function NavBar(props) {
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
-
     </div>
   );
 }

@@ -9,7 +9,8 @@ import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "100vh",
+    height: "100%",
+    backgroundColor: "",
   },
   paper: {
     margin: theme.spacing(4, 3),
@@ -27,14 +28,14 @@ const HomePage = (props) => {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={12} sm={8} md={8} component={Paper}>
+      <Grid item xs={12} sm={8} md={8}>
         <div className={classes.paper}>
           <Feed allPosts={props.allPosts} />
         </div>
       </Grid>
       <Hidden xsDown>
         <Grid item xs={3} sm={4} md={4} className={classes.sidebar}>
-          <MainSidebar />
+          <MainSidebar allPosts={props.allPosts} />
         </Grid>
       </Hidden>
     </Grid>

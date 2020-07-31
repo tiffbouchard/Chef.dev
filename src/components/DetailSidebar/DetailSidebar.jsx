@@ -12,10 +12,10 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    margin: "30px 0 0 0",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    margin: "30px",
     alignItems: "center",
   },
   text: {
@@ -35,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
 
 const useStyles2 = makeStyles((theme) => ({
   root: {
+    margin: "31px 0 10px 0",
+    width: "95%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -46,6 +48,18 @@ const useStyles2 = makeStyles((theme) => ({
   },
   chip: {
     margin: theme.spacing(0.5),
+  },
+  avatar: {
+    margin: "31px 0 10px 0",
+    width: "95%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap",
+    listStyle: "none",
+    padding: "10px",
+    margin: "10px",
   },
 }));
 
@@ -62,22 +76,23 @@ export default function DetailSideBar(props) {
 
   return (
     <div className={classes.root}>
-      <Avatar
-        alt={props.post && props.post.profile.username}
-        img="https://64.media.tumblr.com/7fe6b07e3d225070370fbfba1d389f74/ac0f7440abf44e99-20/s400x600/3eba2ad41993111163bf68efbea576174718da50.png://luseals.tumblr.com/post/620569336070963200/avatar/1.jpg"
-        className={classes.large}
-      />
-      {props.post ? (
-        <Link to={"/profile/" + props.post.profile._id}>
-          <Typography variant="h5" className={classes.text}>
-            {props.post && props.post.profile.username}
-          </Typography>
-        </Link>
-      ) : null}
-      <Typography variant="p" className={classes.text}>
-        {props.post && props.post.profile.bio}
-      </Typography>
-      {props.post &&
+      <Paper className={classes2.avatar}>
+        <Avatar
+          alt={props.post && props.post.profile.username}
+          img="https://64.media.tumblr.com/7fe6b07e3d225070370fbfba1d389f74/ac0f7440abf44e99-20/s400x600/3eba2ad41993111163bf68efbea576174718da50.png://luseals.tumblr.com/post/620569336070963200/avatar/1.jpg"
+          className={classes.large}
+        />
+        {props.post ? (
+          <Link to={"/profile/" + props.post.profile._id}>
+            <Typography variant="h5" className={classes.text}>
+              {props.post && props.post.profile.username}
+            </Typography>
+          </Link>
+        ) : null}
+        <Typography variant="p" className={classes.text}>
+          {props.post && props.post.profile.bio}
+        </Typography>
+        {props.post &&
         props.post.profile.linkedin &&
         props.post.profile.github ? (
           <Grid className={classes.text}>
@@ -89,6 +104,8 @@ export default function DetailSideBar(props) {
             </a>
           </Grid>
         ) : null}
+      </Paper>
+
       <Paper component="ul" className={classes2.root}>
         {chipData.map((data) => {
           let icon;

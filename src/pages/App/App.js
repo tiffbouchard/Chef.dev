@@ -12,6 +12,7 @@ import ProfilePage from "../../pages/ProfilePage/Profile";
 import NewPostPage from "../NewPostPage/NewPostPage";
 import NewProfileForm from "../../components/NewProfileForm/NewProfileForm";
 import PublicProfile from "../../pages/ProfilePage/PublicProfile";
+import Footer from "../../components/Footer/Footer";
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class App extends Component {
       profile: profileService.getProfile(),
       allPosts: [],
       currentPost: [],
+      allProfiles: [],
     };
   }
 
@@ -36,9 +38,15 @@ class App extends Component {
     this.setState({ posts: postsService.create() });
   };
 
-  getCurrentProfilePosts = () => { };
+  async getAllProfiles() {
+    const response = await fetch("/api/profiles/all");
+    const data = await response.json();
+    console.log(data);
+    this.setState({ allProfiles: data });
+  }
 
   async componentDidMount() {
+    this.getAllProfiles();
     const response = await fetch("/api/posts/all");
     const data = await response.json();
     this.setState({ allPosts: data });
@@ -64,38 +72,54 @@ class App extends Component {
           <Route
             exact
             path="/post/new"
-            render={({ history }) => (
-              <NewPostPage
-                history={history}
-                handleCreatePost={this.handleCreatePost}
-                profile={this.state.profile}
-              />
-            )}
+            render={({ history }) =>
+              profileService.getProfile() ? (
+                <NewPostPage
+                  history={history}
+                  handleCreatePost={this.handleCreatePost}
+                  profile={this.state.profile}
+                />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
           />
           <Route
             exact
             path="/post/:id"
             render={(props) => (
-              <DetailPage {...props} profile={this.state.profile} currentPost={this.state.currentPost} />
+              <DetailPage
+                {...props}
+                profile={this.state.profile}
+                currentPost={this.state.currentPost}
+              />
             )}
           />
           <Route
             exact
             path="/profile"
-            render={() => profileService.getProfile() ? 
-               <ProfilePage profile={this.state.profile} /> : <Redirect to='/login'/>
-              }
+            render={() =>
+              profileService.getProfile() ? (
+                <ProfilePage profile={this.state.profile} />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
           />
           <Route
             exact
             path="/profile/new"
-            render={({ history }) => profileService.getProfile() ? (
-              <NewProfileForm
-                history={history}
-                profile={this.state.profile}
-                handleSignupOrLogin={this.handleSignupOrLogin}
-              />
-            ) : <Redirect to='/login'/>}
+            render={({ history }) =>
+              profileService.getProfile() ? (
+                <NewProfileForm
+                  history={history}
+                  profile={this.state.profile}
+                  handleSignupOrLogin={this.handleSignupOrLogin}
+                />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
           />
           <Route
             exact
@@ -104,6 +128,7 @@ class App extends Component {
               <SignupPage
                 history={history}
                 handleSignupOrLogin={this.handleSignupOrLogin}
+                profiles={this.state.allProfiles}
               />
             )}
           />
@@ -125,6 +150,7 @@ class App extends Component {
             )}
           />
         </Switch>
+        {/* <Footer /> */}
       </div>
     );
   }
