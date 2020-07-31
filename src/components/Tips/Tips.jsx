@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ControlledAccordions(props) {
+export default function Tips(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [tips, getTips] = React.useState();
@@ -34,35 +34,39 @@ export default function ControlledAccordions(props) {
     setExpanded(isExpanded ? panel : false);
   };
 
-   useEffect(async () => {
-      const response = await fetch("/api/tips/all");
+  useEffect(() => {
+    async function fetchTips() {
+      const id = props.match.params.id
+      const response = await fetch(`/api/tips/${id}`);
       const data = await response.json();
-      getTips(data );
-  }, []);
+      getTips(data);
+    } fetchTips();
+  }, [])
 
 
-  console.log(tips)
+  console.log("dddd" + tips)
 
   return (
-    <div className={classes.root}>
-    <TipsForm {...props} profile={props.profile}/>
-       {tips && tips.map((post, index) => ( 
+    < div className={classes.root} >
+      <TipsForm {...props} profile={props.profile} />
+      {tips && tips.map((tip) =>
         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
-            <Typography className={classes.heading}>General settings</Typography>
+            <Typography className={classes.heading}>{tip.profile.username}{new Date(tip.createdAt).toDateString()}
+            </Typography>
             <Rating name="size-large" defaultValue={2} size="large" />
           </AccordionSummary>
           <AccordionDetails>
+            {tip.content}
             <Typography>
-            {tips && tips.content}
-          </Typography>
+            </Typography>
           </AccordionDetails>
         </Accordion>
-       ))}   
-    </div>
+      )}
+    </div >
   )
 }
