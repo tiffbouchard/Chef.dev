@@ -1,6 +1,4 @@
-<img src="https://www.elegantthemes.com/blog/wp-content/uploads/2020/02/000-Online-Code-Editors.png"/>
-
-# Chef.dev
+<img src="https://64.media.tumblr.com/ecb4fe8e5932045d4b2d5b54004a575a/451f3ea27689b55a-63/s500x750/8b7026a59fe0e7b0c18f41598a9e521cf0c4f8c2.png"/>
 
 > An online library for all programming languages tutorial. 
 
@@ -16,7 +14,7 @@
 - [Installations](#installation)
 
 ## About 
-> Hub for tech tutorials 
+Hub for tech tutorials 
 
 ## Features
 
@@ -70,14 +68,14 @@ Click [here](https://.herokuapp.com/) to view a demo
 - If a page doesn't exist show a custom error page, right now it just takes you to a blank page of that specific template - public profiles and posts 
 - Sort and categorize posts and have them display on the sidebar depending on these categories
 - Make the ingredients list on the main sidebar dynamic and when clicked you can view recipes with those ingredients
+- Fix search bar functionality
+- Right now the adding an image to a post was taken away because we weren't able to control the size of the image so if it was too big we would get an error - fix this
+- Add the ability to edit a post
 
 ## Contributors
 <a href="https://github.com/daronefrancis/chef.dev/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=daronefrancis/chef.dev" />
 </a>
-
-
-## Contributors
 
 ## Installation
 
