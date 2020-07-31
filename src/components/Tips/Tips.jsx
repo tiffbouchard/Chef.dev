@@ -35,24 +35,23 @@ export default function ControlledAccordions() {
 
   return (
     <div className={classes.root}>
-      {tips.map((post, index) => (
-        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1bh-content"
-            id="panel1bh-header"
-          >
-            <Typography className={classes.heading}>General settings</Typography>
-            <Rating name="size-large" defaultValue={2} size="large" />
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-              maximus est, id dignissim quam.
+
+      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography className={classes.heading}>General settings</Typography>
+          <Rating name="size-large" defaultValue={2} size="large" />
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
+            maximus est, id dignissim quam.
           </Typography>
-          </AccordionDetails>
-        </Accordion>
-      ))}
+        </AccordionDetails>
+      </Accordion>
     </div>
   )
 }
