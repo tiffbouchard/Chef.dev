@@ -51,7 +51,7 @@ class NewProfileForm extends Component {
       await profileService.newProfile(this.state);
       this.props.handleSignupOrLogin();
 
-      this.props.history.push("/");
+      this.props.history.push("/profile");
       console.log(this.props.history);
     } catch (err) {
       console.log(err);
@@ -81,13 +81,12 @@ class NewProfileForm extends Component {
                   autoComplete="fname"
                   name="bio"
                   variant="outlined"
-                  required
                   fullWidth
                   id="bio"
                   label="Bio"
                   autoFocus
                   type="text"
-                  placeholder="Add Bio Here"
+                  placeholder="Bio"
                   value={this.state.bio}
                   onChange={this.handleChange}
                 />

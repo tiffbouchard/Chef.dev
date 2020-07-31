@@ -54,19 +54,19 @@ const UserDetails = (props) => {
       variant="contained"
       color="primary"
     >
-      Create Profile
+      Edit Profile
     </Button>
   );
   const linkedinIcon = profile.linkedin ? (
     <a target="_blank" href={profile.linkedin}>
-    <LinkedInIcon />
-  </a>
+      <LinkedInIcon />
+    </a>
   ) : null;
 
   const githubIcon = profile.github ? (
     <a target="_blank" href={profile.github}>
-    <GitHubIcon />
-  </a>
+      <GitHubIcon />
+    </a>
   ) : null;
 
   return (
@@ -90,11 +90,9 @@ const UserDetails = (props) => {
               color="textPrimary"
               gutterBottom
             >
-              {profile &&
-                profile.firstName.toUpperCase()}
+              {profile && profile.firstName.toUpperCase()}
               <span>&nbsp;</span>
-              {profile &&
-               profile.lastName.toUpperCase()}
+              {profile && profile.lastName.toUpperCase()}
             </Typography>
             <Typography
               variant="h7"
@@ -106,8 +104,8 @@ const UserDetails = (props) => {
             </Typography>
 
             <Grid container spacing={2} justify="center">
-         {githubIcon}
-         {linkedinIcon}
+              {githubIcon}
+              {linkedinIcon}
             </Grid>
 
             <div className={classes.heroButtons}>

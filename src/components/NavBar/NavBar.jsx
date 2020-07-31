@@ -64,7 +64,7 @@ function HideOnScroll(props) {
 
 const useStyles = makeStyles((theme) => ({
   navbar: {
-    backgroundColor: "#6AA9AA",
+    backgroundColor: "#41C6E1",
   },
   grow: {
     flexGrow: 1,
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -105,6 +105,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sectionDesktop: {
+    marginLeft: "10px",
     display: "none",
     [theme.breakpoints.up("md")]: {
       display: "flex",
@@ -125,6 +126,9 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     bottom: theme.spacing(4),
     right: theme.spacing(4),
+  },
+  button: {
+    margin: "10px",
   },
 }));
 
@@ -157,16 +161,7 @@ export default function NavBar(props) {
 
   let login = props.profile ? (
     <>
-      <Button
-        variant="contained"
-        color="secondary"
-        component={Link}
-        to="/post/new"
-      >
-        New Post
-      </Button>
       <Typography>Hello, {props.profile.username}</Typography>
-
       <IconButton
         edge="end"
         aria-label="account of current user"
@@ -179,28 +174,20 @@ export default function NavBar(props) {
       </IconButton>
     </>
   ) : (
-      <>
-        <Button color="inherit" component={Link} to="/login">
-          Login
+    <>
+      <Button color="inherit" component={Link} to="/login">
+        Login
       </Button>
-        <Button color="inherit" component={Link} to="/signup">
-          Sign up
+      <Button color="inherit" component={Link} to="/signup">
+        Sign up
       </Button>
-      </>
-    );
+    </>
+  );
   let username = props.profile ? (
     <MenuItem>{props.profile.username}</MenuItem>
   ) : null;
   let mobileMenu = props.profile ? (
     <>
-      <MenuItem
-        variant="contained"
-        color="secondary"
-        component={Link}
-        to="/post/new"
-      >
-        NEW POST
-      </MenuItem>
       <MenuItem component={Link} to="/profile">
         <IconButton
           aria-label="account of current user"
@@ -230,31 +217,31 @@ export default function NavBar(props) {
       </MenuItem>
     </>
   ) : (
-      <>
-        <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="inherit"
-          >
-            <VpnKey />
-          </IconButton>
-          <p>Login</p>
-        </MenuItem>
-        <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="inherit"
-          >
-            <VpnKey />
-          </IconButton>
-          <p>Sign Up</p>
-        </MenuItem>
-      </>
-    );
+    <>
+      <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <VpnKey />
+        </IconButton>
+        <p>Login</p>
+      </MenuItem>
+      <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <VpnKey />
+        </IconButton>
+        <p>Sign Up</p>
+      </MenuItem>
+    </>
+  );
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -292,7 +279,6 @@ export default function NavBar(props) {
       onClose={handleMobileMenuClose}
     >
       {username}
-
       {mobileMenu}
     </Menu>
   );
@@ -318,7 +304,17 @@ export default function NavBar(props) {
               variant="h6"
               noWrap
             ></Typography>
+
             <div className={classes.grow} />
+            <Button
+              variant="contained"
+              className={classes.button}
+              component={Link}
+              color="primary"
+              to="/post/new"
+            >
+              New Post
+            </Button>
             <div className={classes.sectionDesktop}>{login}</div>
             <div className={classes.sectionMobile}>
               <IconButton
