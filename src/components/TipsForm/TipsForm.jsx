@@ -16,9 +16,8 @@ const useStyles = makeStyles(() => ({
 class TipsForm extends Component {
   state = {
     content: "",
-    useful: "",
     link: "",
-    profile: this.profileState,
+    profile: this.props.profile._id,
     post: this.props.match.params.id,
   };
 
