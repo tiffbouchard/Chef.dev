@@ -11,6 +11,7 @@ import TipsForm from "../TipsForm/TipsForm";
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import TouchRipple from "@material-ui/core/ButtonBase/TouchRipple";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -89,7 +90,7 @@ export default function Tips(props) {
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={classes.heading}>
-              {`Here's a tip from ${tip.profile.username}:`}
+              {`Here's a tip from Darone`}
             </Typography>
             <Typography className={classes.heading}>
               {tip.content}
