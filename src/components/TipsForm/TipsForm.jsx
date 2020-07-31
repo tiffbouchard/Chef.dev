@@ -2,17 +2,23 @@ import React, { Component } from "react";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import tipsService from "../../utils/tipsService"
+import tipsService from "../../utils/tipsService";
 
 class TipsForm extends Component {
   state = {
     content: "",
     link: "",
-    profile: this.props.profile._id,
+    profile: this.profileState,
     post: this.props.match.params.id,
-    allTips: []
   };
 
+  profileState = () => {
+    if (this.props.profile._id) {
+      return this.props.profile._id;
+    } else {
+      return null;
+    }
+  };
 
   handleChange = (e) => {
     this.setState({
@@ -20,43 +26,23 @@ class TipsForm extends Component {
     });
   };
 
-
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await tipsService.create(this.state);
-      this.props.history.push("/");
+      // refactor to update state instead of page reload
+      window.location.reload(true);
     } catch (err) {
-      alert("Error")
-      console.log(err)
+      alert("Error");
+      console.log(err);
     }
   };
 
-  async componentDidMount() {
-    const response = await fetch("/api/tips/all");
-    const data = await response.json();
-    this.setState({ allTips: data });
-  }
-
   render() {
-    console.log(this.props.profile)
-    console.log(this.state.allTips)
+    console.log(this.props.profile);
+    console.log(this.state.allTips);
     return (
       <form onSubmit={this.handleSubmit}>
-        <TextField
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          id="header-image"
-          label="Link"
-          name="link"
-          autoComplete="Link"
-          autoFocus
-          type="URL"
-          placeholder="Link"
-          value={this.state.link}
-          onChange={this.handleChange}
-        />
         <TextField
           multiline
           rows={10}

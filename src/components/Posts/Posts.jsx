@@ -11,7 +11,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
-import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+// import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import Parser from "html-react-parser";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "0px 0 30px 0",
   },
   media: {
-    height: 200,
+    height: 180,
   },
   cardActions: {
     display: "flex",
@@ -37,7 +37,7 @@ const Posts = (props) => {
   return (
     <Container>
       {props.allPosts.map((post) => (
-        <Card className={classes.card}>
+        <Card id="card-post" className={classes.card} elevation={3}>
           <CardActionArea component={Link} to={"/post/" + post._id}>
             {post.image ? (
               <CardMedia className={classes.media} image={post.image} />
@@ -67,9 +67,7 @@ const Posts = (props) => {
                 </Typography>
               </Box>
             </Box>
-            <Box>
-              <BookmarkBorderIcon />
-            </Box>
+            <Box>{/* <BookmarkBorderIcon /> */}</Box>
           </CardActions>
         </Card>
       ))}

@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
   sidebar: {
     // backgroundColor: "grey",
   },
+  tips: {
+    maxWidth: "60vw",
+    padding: "30px",
+    margin: "-10px 0 10px 30px",
+  },
 }));
 
 //comp did mount mathc.params.....
@@ -65,7 +70,7 @@ const DetailPage = (props) => {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={12} sm={8} md={8} component={Paper}>
+      <Grid item xs={12} sm={8} md={8}>
         <div className={classes.paper}>
           <Content {...props} post={post} />
         </div>
@@ -75,9 +80,16 @@ const DetailPage = (props) => {
           <DetailSidebar post={post} />
         </Grid>
       </Hidden>
-      <Grid item xs={12} sm={8} md={8} component={Paper}>
-        <div className={classes.paper}>
-          <Tips {...props} />
+      <Grid
+        item
+        xs={12}
+        sm={8}
+        md={8}
+        className={classes.tips}
+        component={Paper}
+      >
+        <div>
+          <Tips {...props} profile={props.profile} />
         </div>
       </Grid>
     </Grid>

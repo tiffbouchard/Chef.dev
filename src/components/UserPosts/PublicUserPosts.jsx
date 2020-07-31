@@ -72,10 +72,10 @@ const PublicUserPosts = (props) => {
                   )}
 
                   <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h4" component="h2">
+                    <Typography gutterBottom variant="h5" component="h2">
                       {post.title}
                     </Typography>
-                    <Typography gutterBottom variant="h8" component="h8">
+                    <Typography variant="h8" component="p">
                       {new Date(post.createdAt).toDateString()}
                     </Typography>
                     <span>&nbsp;</span>

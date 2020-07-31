@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
   cardGrid: {
-    paddingTop: theme.spacing(8),
+    paddingTop: "theme.spacing(8)",
     paddingBottom: theme.spacing(8),
   },
   card: {
@@ -143,7 +143,6 @@ const UserPosts = (props) => {
         </Grid>
       ) : (
         <Grid>
-          {" "}
           <h3>You have no recipes submitted, Chef {profile.firstName}</h3>
         </Grid>
       )}

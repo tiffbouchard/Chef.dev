@@ -12,6 +12,7 @@ import ProfilePage from "../../pages/ProfilePage/Profile";
 import NewPostPage from "../NewPostPage/NewPostPage";
 import NewProfileForm from "../../components/NewProfileForm/NewProfileForm";
 import PublicProfile from "../../pages/ProfilePage/PublicProfile";
+import Footer from "../../components/Footer/Footer";
 
 class App extends Component {
   constructor(props) {
@@ -71,13 +72,17 @@ class App extends Component {
           <Route
             exact
             path="/post/new"
-            render={({ history }) => (
-              <NewPostPage
-                history={history}
-                handleCreatePost={this.handleCreatePost}
-                profile={this.state.profile}
-              />
-            )}
+            render={({ history }) =>
+              profileService.getProfile() ? (
+                <NewPostPage
+                  history={history}
+                  handleCreatePost={this.handleCreatePost}
+                  profile={this.state.profile}
+                />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
           />
           <Route
             exact
@@ -145,6 +150,7 @@ class App extends Component {
             )}
           />
         </Switch>
+        {/* <Footer /> */}
       </div>
     );
   }

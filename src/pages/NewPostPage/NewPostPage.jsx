@@ -14,7 +14,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const styles = (theme) => ({
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

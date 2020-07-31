@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -24,37 +24,53 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ControlledAccordions() {
+export default function Tips(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [tips, getTips] = React.useState();
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  useEffect(() => {
+    async function fetchTips() {
+      const id = props.match.params.id;
+      const response = await fetch(`/api/tips/${id}`);
+      const data = await response.json();
+      getTips(data);
+    }
+    fetchTips();
+  }, []);
+
+  console.log("dddd" + tips);
+
   return (
     <div className={classes.root}>
-      {/* {tips.map((post, index) => ( */}
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <Typography className={classes.heading}>General settings</Typography>
-          <Rating name="size-large" defaultValue={2} size="large" />
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-            Aliquam eget maximus est, id dignissim quam.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      {/* ))} */}
+      <TipsForm {...props} profile={props.profile} />
+      {tips &&
+        tips.map((tip) => (
+          <Accordion
+            expanded={expanded === "panel1"}
+            onChange={handleChange("panel1")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography className={classes.heading}>
+                {tip.profile.username}
+                {new Date(tip.createdAt).toDateString()}
+              </Typography>
+              <Rating name="size-large" defaultValue={2} size="large" />
+            </AccordionSummary>
+            <AccordionDetails>
+              {tip.content}
+              <Typography></Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import UserPosts from "../../components/UserPosts/UserPosts";
 
 const Profile = (props) => {
   return (
-    <div>
+    <div className="profilepriv">
       <UserDetails profile={props.profile} />
       <UserPosts profile={props.profile} posts={props.posts} />
     </div>
