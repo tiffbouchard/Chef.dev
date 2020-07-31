@@ -79,19 +79,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
+    display: "flex",
+    justifyContent: "flex-end"
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -100,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: "none",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "right",
   },
   inputRoot: {
     color: "inherit",
@@ -190,15 +179,15 @@ export default function NavBar(props) {
       </IconButton>
     </>
   ) : (
-    <>
-      <Button color="inherit" component={Link} to="/login">
-        Login
+      <>
+        <Button color="inherit" component={Link} to="/login">
+          Login
       </Button>
-      <Button color="inherit" component={Link} to="/signup">
-        Sign up
+        <Button color="inherit" component={Link} to="/signup">
+          Sign up
       </Button>
-    </>
-  );
+      </>
+    );
   let username = props.profile ? (
     <MenuItem>{props.profile.username}</MenuItem>
   ) : null;
@@ -241,31 +230,31 @@ export default function NavBar(props) {
       </MenuItem>
     </>
   ) : (
-    <>
-      <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <VpnKey />
-        </IconButton>
-        <p>Login</p>
-      </MenuItem>
-      <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <VpnKey />
-        </IconButton>
-        <p>Sign Up</p>
-      </MenuItem>
-    </>
-  );
+      <>
+        <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <VpnKey />
+          </IconButton>
+          <p>Login</p>
+        </MenuItem>
+        <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <VpnKey />
+          </IconButton>
+          <p>Sign Up</p>
+        </MenuItem>
+      </>
+    );
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
