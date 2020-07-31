@@ -52,7 +52,7 @@ class NewProfileForm extends Component {
       await profileService.newProfile(this.state);
       this.props.handleSignupOrLogin();
 
-      this.props.history.push("/");
+      this.props.history.push("/profile");
       console.log(this.props.history);
     } catch (err) {
       console.log(err);
