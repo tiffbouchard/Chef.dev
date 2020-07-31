@@ -1,8 +1,6 @@
-<p align="center">
 <img src="https://64.media.tumblr.com/ecb4fe8e5932045d4b2d5b54004a575a/451f3ea27689b55a-63/s500x750/8b7026a59fe0e7b0c18f41598a9e521cf0c4f8c2.png"/>
-</p>
 
-<p align="center">An online library for all programming languages tutorial.</p>
+>An online library for all programming languages tutorial.
 
 ## Table of Contents
 - [About](#about)
