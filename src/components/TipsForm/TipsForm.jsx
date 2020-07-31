@@ -49,12 +49,7 @@ class TipsForm extends Component {
   };
 
   render() {
-<<<<<<< HEAD
     const { classes } = this.props;
-=======
-    console.log(this.props.profile);
-    console.log(this.state.allTips);
->>>>>>> 7a81d5a34317666e93e0afbd30f9663c0990d5b3
     return (
       <form onSubmit={this.handleSubmit} >
         <TextField
