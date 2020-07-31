@@ -1,0 +1,7 @@
+#card-post {
+    transition: transform 1s;
+}
+
+#card-post:hover {
+    transform: scale(1.02);
+}

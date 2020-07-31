@@ -20,7 +20,7 @@ const PublicProfile = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className="profile">
       <PublicUserDetails
         {...props}
         currentUser={props.profile}

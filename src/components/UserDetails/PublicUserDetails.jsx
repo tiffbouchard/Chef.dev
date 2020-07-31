@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import profileService from "../../utils/profileService";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -60,17 +61,19 @@ const UserDetails = (props) => {
   //   </Button>
   // );
 
-  const linkedinIcon = props.userpost && props.userpost[0].profile.linkedin ? (
-    <a target="_blank" href={props.userpost[0].profile.linkedin}>
-    <LinkedInIcon />
-  </a>
-  ) : null;
+  const linkedinIcon =
+    props.userpost && props.userpost[0].profile.linkedin ? (
+      <a target="_blank" href={props.userpost[0].profile.linkedin}>
+        <LinkedInIcon />
+      </a>
+    ) : null;
 
-  const githubIcon = props.userpost && props.userpost[0].profile.github ? (
-    <a target="_blank" href={props.userpost[0].profile.github}>
-    <GitHubIcon />
-  </a>
-  ) : null;
+  const githubIcon =
+    props.userpost && props.userpost[0].profile.github ? (
+      <a target="_blank" href={props.userpost[0].profile.github}>
+        <GitHubIcon />
+      </a>
+    ) : null;
 
   return (
     <>
@@ -82,60 +85,55 @@ const UserDetails = (props) => {
                {profile.bio}
                {profile.github}
                {profile.linkedin} */}
-      <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            {/* {props.match.params.id && props.currentUser._id ? (
+      {/* Hero unit */}
+      <div className={classes.heroContent}>
+        <Container maxWidth="sm">
+          {/* {props.match.params.id && props.currentUser._id ? (
               <Grid className={classes.button} container justify="center">
                 <Button disabled variant="outlined">
                   YOUR PUBLIC PROFILE
                 </Button>
               </Grid>
             ) : null} */}
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="textPrimary"
-            >
-              {props.userpost &&
-                props.userpost[0].profile.firstName.toUpperCase()}
-              <span>&nbsp;</span>
-              {props.userpost &&
-                props.userpost[0].profile.lastName.toUpperCase()}
-            </Typography>
-            <Typography
-              variant="h7"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              @{props.userpost && props.userpost[0].profile.username}
-            </Typography>
-            <Typography
-              variant="h7"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              {props.userpost && props.userpost[0].profile.bio}
-            </Typography>
+          <Typography
+            component="h1"
+            variant="h2"
+            align="center"
+            color="textPrimary"
+          >
+            {props.userpost &&
+              props.userpost[0].profile.firstName.toUpperCase()}
+            <span>&nbsp;</span>
+            {props.userpost && props.userpost[0].profile.lastName.toUpperCase()}
+          </Typography>
+          <Typography
+            variant="h7"
+            align="center"
+            color="textSecondary"
+            paragraph
+          >
+            @{props.userpost && props.userpost[0].profile.username}
+          </Typography>
+          <Typography
+            variant="h7"
+            align="center"
+            color="textSecondary"
+            paragraph
+          >
+            {props.userpost && props.userpost[0].profile.bio}
+          </Typography>
 
-           
+          <Grid container spacing={2} justify="center">
+            {githubIcon}
+            {linkedinIcon}
+          </Grid>
+          <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="center">
-         {githubIcon}
-         {linkedinIcon}
-  
+              {/* <Grid item>{editprofile}</Grid> */}
             </Grid>
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center">
-                {/* <Grid item>{editprofile}</Grid> */}
-              </Grid>
-            </div>
-          </Container>
-        </div>
-      </main>
+          </div>
+        </Container>
+      </div>
     </>
   );
 };

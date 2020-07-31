@@ -14,7 +14,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const styles = (theme) => ({
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -31,7 +31,6 @@ class NewPostPage extends Component {
     goal: "",
     ingredients: [],
     image: "",
-    video: "",
     profile: this.props.profile._id,
   };
 
@@ -99,27 +98,13 @@ class NewPostPage extends Component {
               margin="normal"
               fullWidth
               id="header-image"
-              label="Header Image URL"
+              label="Header Image Link"
               name="image"
               autoComplete="image"
               autoFocus
               type="text"
               placeholder="Header Image Link"
               value={this.state.image}
-              onChange={this.handleChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="header-image"
-              label="Youtube Link"
-              name="video"
-              autoComplete="video"
-              autoFocus
-              type="text"
-              placeholder="Youtube Link"
-              value={this.state.video}
               onChange={this.handleChange}
             />
             <Autocomplete
@@ -221,6 +206,14 @@ const ingredients = [
   "SQL",
   "Bootstrap",
   "Materialize",
+  "React",
+  "Swift",
+  "Ruby on Rails",
+  "Django",
+  "Material UI",
+  "SASS",
 ];
+
+// let users add to the ingredients
 
 export default withStyles(styles)(NewPostPage);

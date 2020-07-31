@@ -11,19 +11,16 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
     alignItems: "flex-end",
+    backgroundColor: "",
   },
 }));
 
-export default function DenseAppBar() {
+export default function Footer() {
   const classes = useStyles();
 
   return (
     <footer className={classes.root}>
-      <AppBar position="static">
-        <Toolbar variant="dense">
-          <Typography color="inherit">copyright 2020</Typography>
-        </Toolbar>
-      </AppBar>
+      <Typography color="inherit">copyright 2020</Typography>
     </footer>
   );
 }
