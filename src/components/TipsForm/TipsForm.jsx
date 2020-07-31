@@ -9,8 +9,7 @@ class TipsForm extends Component {
     content: "",
     link: "",
     profile: this.props.profile._id,
-    post: this.props.match.params.id,
-    allTips: []
+    post: this.props.match.params.id
   };
 
 
@@ -25,18 +24,18 @@ class TipsForm extends Component {
     e.preventDefault();
     try {
       await tipsService.create(this.state);
-      this.props.history.push("/");
+      
     } catch (err) {
       alert("Error")
       console.log(err)
     }
   };
 
-  async componentDidMount() {
-    const response = await fetch("/api/tips/all");
-    const data = await response.json();
-    this.setState({ allTips: data });
-  }
+  // async componentDidMount() {
+  //   const response = await fetch("/api/tips/all");
+  //   const data = await response.json();
+  //   this.setState({ allTips: data });
+  // }
 
   render() {
     console.log(this.props.profile)
