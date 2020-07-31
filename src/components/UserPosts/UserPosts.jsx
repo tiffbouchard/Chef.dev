@@ -69,16 +69,16 @@ const UserPosts = (props) => {
       buttons: true,
       dangerMode: true,
     })
-    .then(async (willDelete) => {
-      if (willDelete) {
-        await handleDeletePost(userpost[index]._id);
-        swal("Poof! Your post has been deleted!", {
-          icon: "success",
-        });
-      } else {
-        swal("Your post has not been deleted!");
-      }
-    });
+      .then(async (willDelete) => {
+        if (willDelete) {
+          await handleDeletePost(userpost[index]._id);
+          swal("Poof! Your post has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your post has not been deleted!");
+        }
+      });
   }
 
   async function handleDeletePost(id) {
@@ -93,60 +93,60 @@ const UserPosts = (props) => {
         setUserPost(updateUserPosts);
       });
   }
-  
-  
-  
+
+
+
   console.log(profile)
   return (
 
-   
+
     <Container className={classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
-        {userpost.length > 0 ? 
-      <Grid container spacing={4}>
-        {userpost.map((post, index) => (
-          <Grid item key={post} xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
-              <CardMedia
-                className={classes.cardMedia}
-                image={post.image}
-                title={post.title}
-              />
-              <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant="h4" component="h2">
-                  {post.title}
-                </Typography>
-                <Typography gutterBottom variant="h8" component="h8">
-                {new Date(post.createdAt).toDateString()}
-                </Typography>
-                <Typography>
-                  {post.content.split(" ").slice(0, 40).join(" ")}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  component={Link}
-                  to={`/post/${post._id}`}
-                  size="small"
-                  color="primary"
-                >
-                  View
+      {userpost.length > 0 ?
+        <Grid container spacing={4}>
+          {userpost.map((post, index) => (
+            <Grid item key={post} xs={12} sm={6} md={4}>
+              <Card className={classes.card}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={post.image}
+                  title={post.title}
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h4" component="h2">
+                    {post.title}
+                  </Typography>
+                  <Typography gutterBottom variant="h8" component="h8">
+                    {new Date(post.createdAt).toDateString()}
+                  </Typography>
+                  <Typography>
+                    {post.content.split(" ").slice(0, 40).join(" ")}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    component={Link}
+                    to={`/post/${post._id}`}
+                    size="small"
+                    color="primary"
+                  >
+                    View
                 </Button>
-                <Button
-                  onClick={() => {
-                    onDeleteClick(index);
-                  }}
-                  size="small"
-                  color="primary"
-                >
-                  Delete
+                  <Button
+                    onClick={() => {
+                      onDeleteClick(index);
+                    }}
+                    size="small"
+                    color="primary"
+                  >
+                    Delete
                 </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-      ))}
-      </Grid>
-    : <Grid>  <h3>You have no recipes submitted, Chef {profile.firstName}</h3></Grid> } 
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+        : <Grid>  <h3>You have no recipes submitted, Chef {profile.firstName}</h3></Grid>}
     </Container>
   );
 };
