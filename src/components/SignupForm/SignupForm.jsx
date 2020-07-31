@@ -40,6 +40,7 @@ class SignupForm extends Component {
     email: "",
     password: "",
     passwordConf: "",
+    profiles: this.props.profiles,
   };
 
   handleChange = (e) => {
@@ -50,16 +51,50 @@ class SignupForm extends Component {
     });
   };
 
+  // validateUsername = () => {
+  //   new Promise(function (resolve, reject) {
+  //     this.state.profiles.forEach((profile) => {
+  //       if (profile.username === this.state.username) {
+  //         resolve("Stuff worked!");
+  //       } else {
+  //         reject(Error("It broke"));
+  //       }
+  //     });
+  //   });
+  // };
+
+  // validateUsername = () => {
+  //    {
+  //     if () {
+  //       return;
+  //     } else {
+  //       return err
+  //     }
+  //   });
+  // };
+
+  // validateUsername = () => {
+  //   this.state.profiles.forEach((profile) => {
+  //     if (profile.email !== this.state.email) {
+  //       return;
+  //     } else {
+  //       break;
+  //     }
+  //   });
+  // };
+
   handleSubmit = async (e) => {
     e.preventDefault();
+    // if (this.validateUsername()) {
+    //   console.log("hi");
+    // }
+    // this.validateUsername();
+    // this.validateEmail();
     try {
       await profileService.signup(this.state);
-      // Let <App> know a user has signed up!
       this.props.handleSignupOrLogin();
-      // Successfully signed up - show GamePage
       this.props.history.push("/");
     } catch (err) {
-      // Invalid user data (probably duplicate email)
       this.props.updateMessage(err.message);
     }
   };

@@ -3,6 +3,7 @@ import "./UserPosts.css";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
 import CardActions from "@material-ui/core/CardActions";
+import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -10,8 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
-import swal from 'sweetalert';
-
+import swal from "sweetalert";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -68,8 +68,7 @@ const UserPosts = (props) => {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    })
-    .then(async (willDelete) => {
+    }).then(async (willDelete) => {
       if (willDelete) {
         await handleDeletePost(userpost[index]._id);
         swal("Poof! Your post has been deleted!", {
@@ -93,60 +92,61 @@ const UserPosts = (props) => {
         setUserPost(updateUserPosts);
       });
   }
-  
-  
-  
-  console.log(profile)
-  return (
 
-   
+  console.log(profile);
+  return (
     <Container className={classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
-        {userpost.length > 0 ? 
-      <Grid container spacing={4}>
-        {userpost.map((post, index) => (
-          <Grid item key={post} xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
-              <CardMedia
-                className={classes.cardMedia}
-                image={post.image}
-                title={post.title}
-              />
-              <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant="h4" component="h2">
-                  {post.title}
-                </Typography>
-                <Typography gutterBottom variant="h8" component="h8">
-                {new Date(post.createdAt).toDateString()}
-                </Typography>
-                <Typography>
-                  {post.content.split(" ").slice(0, 40).join(" ")}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  component={Link}
-                  to={`/post/${post._id}`}
-                  size="small"
-                  color="primary"
-                >
-                  View
-                </Button>
-                <Button
-                  onClick={() => {
-                    onDeleteClick(index);
-                  }}
-                  size="small"
-                  color="primary"
-                >
-                  Delete
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-      ))}
-      </Grid>
-    : <Grid>  <h3>You have no recipes submitted, Chef {profile.firstName}</h3></Grid> } 
+      {userpost.length > 0 ? (
+        <Grid container spacing={4}>
+          {userpost.map((post, index) => (
+            <Grid item key={post} xs={12} sm={6} md={4}>
+              <Card className={classes.card}>
+                <CardActionArea component={Link} to={`/post/${post._id}`}>
+                  {post.image ? (
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image={post.image}
+                      title={post.title}
+                    />
+                  ) : (
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image="https://miro.medium.com/max/1350/0*Wz93rPzLLTq1VwVW"
+                      title={post.title}
+                    />
+                  )}
+
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h4" component="h2">
+                      {post.title}
+                    </Typography>
+                    <Typography variant="h8" component="h8">
+                      {new Date(post.createdAt).toDateString()}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <Button
+                    onClick={() => {
+                      onDeleteClick(index);
+                    }}
+                    size="small"
+                    color="primary"
+                  >
+                    Delete
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <Grid>
+          {" "}
+          <h3>You have no recipes submitted, Chef {profile.firstName}</h3>
+        </Grid>
+      )}
     </Container>
   );
 };

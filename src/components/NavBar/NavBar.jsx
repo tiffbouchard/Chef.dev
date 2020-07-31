@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { fade, makeStyles } from "@material-ui/core/styles";
+
+import "./NavBar.css";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -17,13 +20,13 @@ import ExitToApp from "@material-ui/icons/ExitToApp";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Search from "../Search/Search"
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Slide from '@material-ui/core/Slide';
-import Fab from '@material-ui/core/Fab';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import Zoom from '@material-ui/core/Zoom';
-import PropTypes from 'prop-types';
+import Search from "../Search/Search";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import Slide from "@material-ui/core/Slide";
+import Fab from "@material-ui/core/Fab";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import Zoom from "@material-ui/core/Zoom";
+import PropTypes from "prop-types";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -38,10 +41,12 @@ function ScrollTop(props) {
   });
 
   const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      "#back-to-top-anchor"
+    );
 
     if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      anchor.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
 
@@ -133,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 120,
   },
   root: {
-    position: 'fixed',
+    position: "fixed",
     bottom: theme.spacing(4),
     right: theme.spacing(4),
   },
@@ -173,20 +178,19 @@ export default function NavBar(props) {
       </button>
     </>
   ) : (
-      <>
-        <Button color="inherit" component={Link} to="/login">
-          Login
+    <>
+      <Button color="inherit" component={Link} to="/login">
+        Login
       </Button>
-        <Button color="inherit" component={Link} to="/signup">
-          Sign up
+      <Button color="inherit" component={Link} to="/signup">
+        Sign up
       </Button>
-      </>
-    );
+    </>
+  );
   let login = props.profile ? (
     <>
       <Typography>Hello, {props.profile.username}</Typography>
-    
-      
+
       <IconButton
         edge="end"
         aria-label="account of current user"
@@ -199,21 +203,21 @@ export default function NavBar(props) {
       </IconButton>
     </>
   ) : (
-      <>
-        <Button color="inherit" component={Link} to="/login">
-          Login
+    <>
+      <Button color="inherit" component={Link} to="/login">
+        Login
       </Button>
-        <Button color="inherit" component={Link} to="/signup">
-          Sign up
+      <Button color="inherit" component={Link} to="/signup">
+        Sign up
       </Button>
-      </>
-    );
+    </>
+  );
   let username = props.profile ? (
     <MenuItem>{props.profile.username}</MenuItem>
   ) : null;
   let mobileMenu = props.profile ? (
     <>
-      <MenuItem component={Link} to='/profile'>
+      <MenuItem component={Link} to="/profile">
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
@@ -242,31 +246,31 @@ export default function NavBar(props) {
       </MenuItem>
     </>
   ) : (
-      <>
-        <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="inherit"
-          >
-            <ExitToApp />
-          </IconButton>
-          <p>Login</p>
-        </MenuItem>
-        <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="inherit"
-          >
-            <ExitToApp />
-          </IconButton>
-          <p>Sign Up</p>
-        </MenuItem>
-      </>
-    );
+    <>
+      <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <ExitToApp />
+        </IconButton>
+        <p>Login</p>
+      </MenuItem>
+      <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <ExitToApp />
+        </IconButton>
+        <p>Sign Up</p>
+      </MenuItem>
+    </>
+  );
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -277,12 +281,17 @@ export default function NavBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem  onClick={() => {
+      <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>
+        Profile
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
           props.handleLogout();
           handleMenuClose();
-        }}>
-        Logout</MenuItem>
+        }}
+      >
+        Logout
+      </MenuItem>
     </Menu>
   );
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -297,7 +306,7 @@ export default function NavBar(props) {
       onClose={handleMobileMenuClose}
     >
       {username}
-      
+
       {mobileMenu}
     </Menu>
   );
@@ -318,12 +327,8 @@ export default function NavBar(props) {
               className={classes.title}
               variant="h6"
               noWrap
-            >
-            </Typography>
-            <Search
-              allPosts={props.allPosts}
-            />
-
+            ></Typography>
+            <Search allPosts={props.allPosts} />
 
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>{login}</div>
@@ -349,7 +354,6 @@ export default function NavBar(props) {
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
-
     </div>
   );
 }
