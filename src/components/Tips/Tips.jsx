@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -25,17 +25,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ControlledAccordions() {
+export default function ControlledAccordions(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [tips, getTips] = React.useState();
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
+   useEffect(async () => {
+      const response = await fetch("/api/tips/all");
+      const data = await response.json();
+      getTips(data );
+  }, []);
+
+
+  console.log(tips)
+
   return (
     <div className={classes.root}>
-      {tips.map((post, index) => (
+    <TipsForm {...props} profile={props.profile}/>
+       {tips && tips.map((post, index) => ( 
         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -47,12 +58,11 @@ export default function ControlledAccordions() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-              maximus est, id dignissim quam.
+            {tips && tips.content}
           </Typography>
           </AccordionDetails>
         </Accordion>
-      ))}
+       ))}   
     </div>
   )
 }
