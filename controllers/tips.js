@@ -18,7 +18,9 @@ async function create(req, res) {
 
 async function getTips(req, res) {
   const id = req.params.id
+  // const indexOfMaxValue = arr.indexOf(Math.max(...arr));
   const allTips = await Tip.find({ post: id }).populate("profile")
+    .limit(req.query.limit || 6);
   res.json(allTips)
   console.log(allTips);
 }

@@ -79,19 +79,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
+    display: "flex",
+    justifyContent: "flex-end"
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -100,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: "none",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "right",
   },
   inputRoot: {
     color: "inherit",
@@ -321,6 +310,7 @@ export default function NavBar(props) {
             >
             </Typography>
             <Search
+              className={classes.search}
               allPosts={props.allPosts}
             />
             <div className={classes.grow} />
