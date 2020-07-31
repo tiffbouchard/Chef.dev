@@ -4,7 +4,7 @@ const tipsCtrl = require("../../controllers/tips");
 
 /*---------- Public Routes ----------*/
 router.post("/new", tipsCtrl.create);
-router.get("/all", tipsCtrl.getTips);
+router.get("/:id", tipsCtrl.getTips);
 
 /*---------- Protected Routes ----------*/
 

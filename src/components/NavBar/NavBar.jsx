@@ -185,8 +185,8 @@ export default function NavBar(props) {
   let login = props.profile ? (
     <>
       <Typography>Hello, {props.profile.username}</Typography>
-    
-      
+
+
       <IconButton
         edge="end"
         aria-label="account of current user"
@@ -278,10 +278,10 @@ export default function NavBar(props) {
       onClose={handleMenuClose}
     >
       <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem  onClick={() => {
-          props.handleLogout();
-          handleMenuClose();
-        }}>
+      <MenuItem onClick={() => {
+        props.handleLogout();
+        handleMenuClose();
+      }}>
         Logout</MenuItem>
     </Menu>
   );
@@ -297,7 +297,7 @@ export default function NavBar(props) {
       onClose={handleMobileMenuClose}
     >
       {username}
-      
+
       {mobileMenu}
     </Menu>
   );
@@ -305,7 +305,7 @@ export default function NavBar(props) {
   return (
     <div className={classes.grow}>
       <HideOnScroll {...props}>
-        <AppBar position="static">
+        <AppBar position="static" id="back-to-top-anchor">
           <Toolbar>
             <Button component={Link} to="/">
               <img
@@ -323,8 +323,6 @@ export default function NavBar(props) {
             <Search
               allPosts={props.allPosts}
             />
-
-
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>{login}</div>
             <div className={classes.sectionMobile}>
@@ -341,7 +339,6 @@ export default function NavBar(props) {
           </Toolbar>
         </AppBar>
       </HideOnScroll>
-      <Toolbar id="back-to-top-anchor" />
       {renderMobileMenu}
       {renderMenu}
       <ScrollTop {...props}>

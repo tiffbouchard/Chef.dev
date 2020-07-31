@@ -7,9 +7,6 @@ module.exports = {
 
 async function create(req, res) {
   const tip = new Tip(req.body);
-  console.log("refdafsaf" + req.body);
-
-  console.log("dfadasf" + tip);
   try {
     await tip.save();
     res.json({ tip });
@@ -20,8 +17,9 @@ async function create(req, res) {
 
 
 async function getTips(req, res) {
-  const allTips = await Tip.find().populate("profile").populate("tip");
-  res.json(allTips);
+  const id = req.params.id
+  const allTips = await Tip.find({ post: id }).populate("profile")
+  res.json(allTips)
   console.log(allTips);
 }
 

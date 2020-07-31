@@ -78,17 +78,17 @@ export default function DetailSideBar(props) {
         {props.post && props.post.profile.bio}
       </Typography>
       {props.post &&
-      props.post.profile.linkedin &&
-      props.post.profile.github ? (
-        <Grid className={classes.text}>
-          <a target="_blank" href={props.post.profile.linkedin}>
-            <LinkedInIcon />
-          </a>
-          <a target="_blank" href={props.post.profile.github}>
-            <GitHubIcon />
-          </a>
-        </Grid>
-      ) : null}
+        props.post.profile.linkedin &&
+        props.post.profile.github ? (
+          <Grid className={classes.text}>
+            <a target="_blank" href={props.post.profile.linkedin}>
+              <LinkedInIcon />
+            </a>
+            <a target="_blank" href={props.post.profile.github}>
+              <GitHubIcon />
+            </a>
+          </Grid>
+        ) : null}
       <Paper component="ul" className={classes2.root}>
         {chipData.map((data) => {
           let icon;
