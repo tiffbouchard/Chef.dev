@@ -47,13 +47,12 @@ User:
 - [ERD](https://app.diagrams.net/#Hdaronefrancis%2Fchef.dev%2Fmaster%2FERDs.drawio)
 
 ## Screenshots
-<img src="screenshots/img1.png" caption=""/>
-<img src="screenshots/img6.png" caption=""/>
 <img src="screenshots/img2.png" caption=""/>
+<img src="screenshots/img6.png" caption=""/>
 <img src="screenshots/img3.png" caption=""/>
 <img src="screenshots/img4.png" caption=""/>
 <img src="screenshots/img5.png" caption=""/>
-
+<img src="screenshots/img7.png" caption=""/>
 
 
 ## Getting Started 
