@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
+import CardActionArea from "@material-ui/core/CardActionArea";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 
@@ -55,32 +56,31 @@ const PublicUserPosts = (props) => {
           props.userpost.map((post) => (
             <Grid item key={post} xs={12} sm={6} md={4}>
               <Card className={classes.card}>
-              <CardMedia
-                className={classes.cardMedia}
-                image={post.image}
-                title={post.title}
-              />
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h4" component="h2">
-                    {post.title}
-                  </Typography>
-                  <Typography gutterBottom variant="h8" component="h8">
-                  {new Date(post.createdAt).toDateString()}
-                  </Typography>
-                  <span>&nbsp;</span>
-                  <Typography>
-                    {post.content.split(" ").slice(0, 40).join(" ")}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                <Button
-                  component={Link}
-                  to={`/post/${post._id}`}
-                  size="small"
-                  color="primary"
-                >
-                  View
-                </Button></CardActions>
+                <CardActionArea component={Link} to={`/post/${post._id}`}>
+                  {post.image ? (
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image={post.image}
+                      title={post.title}
+                    />
+                  ) : (
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image="https://miro.medium.com/max/1350/0*Wz93rPzLLTq1VwVW"
+                      title={post.title}
+                    />
+                  )}
+
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {post.title}
+                    </Typography>
+                    <Typography variant="h8" component="p">
+                      {new Date(post.createdAt).toDateString()}
+                    </Typography>
+                    <span>&nbsp;</span>
+                  </CardContent>
+                </CardActionArea>
               </Card>
             </Grid>
           ))}

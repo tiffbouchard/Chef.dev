@@ -24,27 +24,12 @@ import Parser from "html-react-parser";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: "100%",
-    maxWidth: "95%",
-    padding: "-5px",
-    margin: "-30px",
+    minWidth: "60vw",
+    margin: "5px 0 0 0",
   },
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: "rotate(180deg)",
-  },
-  avatar: {
-    backgroundColor: red[500],
   },
   player: {
     // height: '100%',
@@ -62,10 +47,10 @@ const useStyles2 = makeStyles((theme) => ({
     flexWrap: "wrap",
     listStyle: "none",
     padding: "15px",
-    margin: "30px",
+    margin: "10px",
   },
   chip: {
-    margin: theme.spacing(0.5),
+    padding: "5px",
   },
   title: {
     margin: "10px 0 0 0",
@@ -90,7 +75,7 @@ function Content(props) {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography className={classes2.title} variant="h3" component="h2">
+        <Typography className={classes2.title} variant="h4" component="h2">
           {props.post && props.post.title}
         </Typography>
         <CardHeader
@@ -130,7 +115,7 @@ function Content(props) {
           }}
         />
       ) : null}
-      <Paper component="ul" className={classes2.root}>
+      <Paper elevate={3} component="ul" className={classes2.root}>
         {props.post &&
           props.post.ingredients.map((ingredient) => {
             return (

@@ -2,16 +2,23 @@ import React, { Component } from "react";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import tipsService from "../../utils/tipsService"
+import tipsService from "../../utils/tipsService";
 
 class TipsForm extends Component {
   state = {
     content: "",
     link: "",
-    profile: this.props.profile._id,
-    post: this.props.match.params.id
+    profile: this.profileState,
+    post: this.props.match.params.id,
   };
 
+  profileState = () => {
+    if (this.props.profile._id) {
+      return this.props.profile._id;
+    } else {
+      return null;
+    }
+  };
 
   handleChange = (e) => {
     this.setState({
@@ -19,25 +26,21 @@ class TipsForm extends Component {
     });
   };
 
-
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-
       await tipsService.create(this.state);
       // refactor to update state instead of page reload
-      window.location.reload(true)
-
+      window.location.reload(true);
     } catch (err) {
-      alert("Error")
-      console.log(err)
+      alert("Error");
+      console.log(err);
     }
   };
 
-
   render() {
-    console.log(this.props.profile)
-    console.log(this.state.allTips)
+    console.log(this.props.profile);
+    console.log(this.state.allTips);
     return (
       <form onSubmit={this.handleSubmit}>
         <TextField

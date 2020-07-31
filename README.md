@@ -62,6 +62,9 @@ Click [here](https://.herokuapp.com/) to view a demo
 
 ## Next Steps
 
+- Allow users to upload a profile picture / image for their post
+- Allow users to submit an ingredient
+
 ## Contributors
 <a href="https://github.com/daronefrancis/chef.dev/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=daronefrancis/chef.dev" />

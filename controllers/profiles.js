@@ -9,6 +9,7 @@ module.exports = {
   newProfile,
   userPosts,
   userPublicPosts,
+  getAllProfiles,
 };
 
 async function signup(req, res) {
@@ -71,6 +72,11 @@ async function userPublicPosts(req, res) {
   const profilePosts = await Post.find({ profile: id }).populate("profile");
   console.log(profilePosts);
   res.json(profilePosts);
+}
+
+async function getAllProfiles(req, res) {
+  const allProfiles = await Profile.find().populate("post");
+  res.json(allProfiles);
 }
 
 // Helper Functions
