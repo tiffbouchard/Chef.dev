@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     textAlign: "center",
     justifyContent: "center",
-    margin: "5px",
     alignItems: "center",
   },
   large: {
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(15),
     justifyContent: "center",
     alignItems: "center",
-    textDecoration: "none"
+    textDecoration: "none",
   },
 }));
 
@@ -84,7 +83,7 @@ export default function DetailSideBar(props) {
           className={classes.large}
         />
         {props.post ? (
-          <Link to={"/profile/" + props.post.profile._id} className={classes.large}>
+          <Link to={"/profile/" + props.post.profile._id}>
             <Typography variant="h5" className={classes.text}>
               {props.post && props.post.profile.username}
             </Typography>
@@ -94,17 +93,17 @@ export default function DetailSideBar(props) {
           {props.post && props.post.profile.bio}
         </Typography>
         {props.post &&
-          props.post.profile.linkedin &&
-          props.post.profile.github ? (
-            <Grid className={classes.text}>
-              <a target="_blank" href={props.post.profile.linkedin}>
-                <LinkedInIcon />
-              </a>
-              <a target="_blank" href={props.post.profile.github}>
-                <GitHubIcon />
-              </a>
-            </Grid>
-          ) : null}
+        props.post.profile.linkedin &&
+        props.post.profile.github ? (
+          <Grid className={classes.text}>
+            <a target="_blank" href={props.post.profile.linkedin}>
+              <LinkedInIcon />
+            </a>
+            <a target="_blank" href={props.post.profile.github}>
+              <GitHubIcon />
+            </a>
+          </Grid>
+        ) : null}
       </Paper>
 
       <Paper component="ul" className={classes2.root}>

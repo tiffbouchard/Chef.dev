@@ -142,7 +142,7 @@ const UserPosts = (props) => {
           ))}
         </Grid>
       ) : (
-        <Grid>
+        <Grid align="center">
           <h3>You have no recipes submitted, Chef {profile.firstName}</h3>
         </Grid>
       )}
