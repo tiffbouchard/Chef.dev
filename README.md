@@ -72,6 +72,7 @@ Click [here](https://chefdev.herokuapp.com/) to view a demo
 - Right now the adding an image to a post was taken away because we weren't able to control the size of the image so if it was too big we would get an error - fix this
 - Add the ability to edit a post
 - On the users detail page show the ingredients they use - they are just hard coded in right now
+- Create context for shared state instead of prop drilling for cleaner code
 
 ## Contributors
 <a href="https://github.com/daronefrancis/chef.dev/graphs/contributors">
