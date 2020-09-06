@@ -2,22 +2,20 @@ import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import tipsService from "../../utils/tipsService"
-import { withStyles } from '@material-ui/core/styles';
-
+import tipsService from "../../utils/tipsService";
+import { withStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
     margin: "10px",
   },
-
 }));
 
 class TipsForm extends Component {
   state = {
     content: "",
     link: "",
-    profile: this.props.profile._id,
+    profile: this.profileState,
     post: this.props.match.params.id,
   };
 
@@ -50,52 +48,68 @@ class TipsForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <form onSubmit={this.handleSubmit} >
-      {this.props.profile ? 
-      <TextField
-          multiline
-          rows={10}
-          rowsMax={500}
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          id="Tip"
-          label="Tip"
-          name="content"
-          autoComplete="Tip"
-          autoFocus
-          type="text"
-          placeholder="Tip"
-          value={this.state.content}
-          onChange={this.handleChange}
-        />
-        :   <TextField
-        multiline
-        rows={10}
-        rowsMax={500}
-        variant="outlined"
-        margin="normal"
-        disabled
-        fullWidth
-        id="Tip"
-        label="Tip"
-        name="content"
-        autoComplete="Tip"
-        autoFocus
-        type="text"
-        placeholder="Tip"
-        value={this.state.content}
-        onChange={this.handleChange}
-      />}
-        {this.props.profile ? 
-        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.form}>
-          Post
-       </Button> : <Button type="submit" fullWidth variant="contained" color="primary" className={classes.form}>
-          Post
-        </Button> }
+      <form onSubmit={this.handleSubmit}>
+        {this.props.profile ? (
+          <TextField
+            multiline
+            rows={10}
+            rowsMax={500}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="Tip"
+            label="Tip"
+            name="content"
+            autoComplete="Tip"
+            autoFocus
+            type="text"
+            placeholder="Tip"
+            value={this.state.content}
+            onChange={this.handleChange}
+          />
+        ) : (
+          <TextField
+            multiline
+            rows={10}
+            rowsMax={500}
+            variant="outlined"
+            margin="normal"
+            disabled
+            fullWidth
+            id="Tip"
+            label="Tip"
+            name="content"
+            autoComplete="Tip"
+            autoFocus
+            type="text"
+            placeholder="Tip"
+            value={this.state.content}
+            onChange={this.handleChange}
+          />
+        )}
+        {this.props.profile ? (
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.form}
+          >
+            Post
+          </Button>
+        ) : (
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.form}
+          >
+            Post
+          </Button>
+        )}
       </form>
-      
     );
   }
 }
